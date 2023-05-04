@@ -75,8 +75,7 @@ class UsuarioDAO{
         $obj = new Usuario;
         $obj->setId($row['id']);
         $obj->setNome($row['nome']);
-        $obj->setEmail($row['email']);
-        $obj->setSenha($row['senha']);
+        $obj->setPrecoKg($row['preçokg']);
         return $obj;
     }
     public function listAll (){
