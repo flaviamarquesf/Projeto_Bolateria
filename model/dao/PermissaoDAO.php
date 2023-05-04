@@ -20,7 +20,7 @@ class PermissaoDAO{
     }
     public function insert (Permissao $permissao){
         try {
-            $sql = "INSERT INTO permissao (nome,email,senha) VALUES (:nome,:email,:senha)"; 
+            $sql = "INSERT INTO permissao (nome) VALUES (:nome)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":nome", $permissao->getNome());

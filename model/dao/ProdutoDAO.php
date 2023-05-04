@@ -20,13 +20,11 @@ class ProdutoDAO{
     }
     public function insert (Produto $produto){
         try {
-            $sql = "INSERT INTO produto (nome,email,senha) VALUES (:nome,:email,:senha)"; 
+            $sql = "INSERT INTO produto (nome,precokg) VALUES (:nome,:precokg)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":nome", $produto->getNome());
-            $p_sql->bindValue(":email", $produto->getEmail());
-            //iremos critografar a senha para md5, assim o usuário terá mais segurança, já que frequentemente usamos a mesma senha para diversas aplicações.
-            $p_sql->bindValue(":senha", md5($produto->getSenha()));
+            $p_sql->bindValue(":precokg", $produto->getPrecokg());
             return $p_sql->execute();
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();
@@ -74,7 +72,7 @@ class ProdutoDAO{
         $obj = new Produto;
         $obj->setId($row['id']);
         $obj->setNome($row['nome']);
-        $obj->setPrecoKg($row['precokg']);
+        $obj->setPrecokg($row['precokg']);
         return $obj;
     }
     public function listAll (){

@@ -20,13 +20,11 @@ class CompraDAO{
     }
     public function insert (Compra $compra){
         try {
-            $sql = "INSERT INTO compra (nome,email,senha) VALUES (:nome,:email,:senha)"; 
+            $sql = "INSERT INTO compra (idCliente,dataCompra) VALUES (:idCliente,:dataCompra)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
-            $p_sql->bindValue(":nome", $compra->getNome());
-            $p_sql->bindValue(":email", $compra->getEmail());
-            //iremos critografar a senha para md5, assim o usuário terá mais segurança, já que frequentemente usamos a mesma senha para diversas aplicações.
-            $p_sql->bindValue(":senha", md5($compra->getSenha()));
+            $p_sql->bindValue(":idCliente", $compra->getIdCliente());
+            $p_sql->bindValue(":dataCompra", $compra->getdataCompra());
             return $p_sql->execute();
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();
@@ -34,12 +32,11 @@ class CompraDAO{
     }
     public function update ($compra){
         try {
-            $sql = "UPDATE compra SET nome=:nome,email=:email,senha=:senha WHERE id=:id"; 
+            $sql = "UPDATE compra SET idCliente=:idCliente,dataCompra=:dataCompra WHERE id=:id"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
-            $p_sql->bindValue(":nome", $compra->getNome());
-            $p_sql->bindValue(":email", $compra->getEmail());
-            $p_sql->bindValue(":senha", md5($compra->getSenha()));
+            $p_sql->bindValue(":idCliente", $compra->getIdCliente());
+            $p_sql->bindValue(":dataCompra", $compra->getDataCompra());
             $p_sql->bindValue(":id", $compra->getId());
             return $p_sql->execute();
             } catch (Exception $e) {
@@ -74,9 +71,8 @@ class CompraDAO{
     private function converterLinhaDaBaseDeDadosParaObjeto($row) {
         $obj = new Compra;
         $obj->setId($row['id']);
-        $obj->setNome($row['nome']);
-        $obj->setEmail($row['email']);
-        $obj->setSenha($row['senha']);
+        $obj->setIdCliente($row['idCliente']);
+        $obj->setDataCompra($row['dataCompra']);
         return $obj;
     }
     public function listAll (){

@@ -1,8 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/Usuario.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/FluxoFinanceiro.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/BDPDO.php';
 
-class UsuarioDAO{
+class FluxoFinanceiroDAO{
     public static $instance;
 
     private function __construct() {
@@ -13,34 +13,36 @@ class UsuarioDAO{
 
     if (!isset(self::$instance))
 
-    self::$instance = new UsuarioDAO();
+    self::$instance = new FluxoFinanceiroDAO();
 
     return self::$instance;
 
     }
-    public function insert (Usuario $usuario){
+    public function insert (FluxoFinanceiro $fluxoFinanceiro){
         try {
-            $sql = "INSERT INTO usuario (nome,email,senha) VALUES (:nome,:email,:senha)"; 
+            $sql = "INSERT INTO fluxoFinanceiro (fluxo,dataPagamento,tipo,valor) VALUES (:fluxo,:dataPagamento,:tipo,:valor)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
-            $p_sql->bindValue(":nome", $usuario->getNome());
-            $p_sql->bindValue(":email", $usuario->getEmail());
+            $p_sql->bindValue(":fluxo", $fluxoFinanceiro->getFluxo());
+            $p_sql->bindValue(":dataPagamento", $fluxoFinanceiro->getdataPagamento());
             //iremos critografar a senha para md5, assim o usuário terá mais segurança, já que frequentemente usamos a mesma senha para diversas aplicações.
-            $p_sql->bindValue(":senha", md5($usuario->getSenha()));
+            $p_sql->bindValue(":tipo", $fluxoFinanceiro->getTipo());
+            $p_sql->bindValue(":valor", $fluxoFinanceiro->getValor());
             return $p_sql->execute();
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();
             }
     }
-    public function update ($usuario){
+    public function update ($fluxoFinanceiro){
         try {
-            $sql = "UPDATE usuario SET nome=:nome,email=:email,senha=:senha WHERE id=:id"; 
+            $sql = "UPDATE fluxoFinanceiro SET fluxo=:fluxo,dataPagamento=:dataPagamento,tipo=:tipo,valor=:valor WHERE id=:id"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
-            $p_sql->bindValue(":nome", $usuario->getNome());
-            $p_sql->bindValue(":email", $usuario->getEmail());
-            $p_sql->bindValue(":senha", md5($usuario->getSenha()));
-            $p_sql->bindValue(":id", $usuario->getId());
+            $p_sql->bindValue(":fluxo", $fluxoFinanceiro->getFluxo());
+            $p_sql->bindValue(":dataPagamento", $fluxoFinanceiro->getDataPagamento());
+            $p_sql->bindValue(":tipo", $fluxoFinanceiro->getTipo());
+            $p_sql->bindValue(":valor", $fluxoFinanceiro->getValor());
+            $p_sql->bindValue(":id", $fluxoFinanceiro->getId());
             return $p_sql->execute();
             } catch (Exception $e) {
             print "Erro ao executar a função de atualizar".$e->getMessage();
@@ -48,7 +50,7 @@ class UsuarioDAO{
     }
     public function delete ($id){
         try {
-            $sql = "DELETE FROM usuario WHERE id = :id";
+            $sql = "DELETE FROM fluxoFinanceiro WHERE id = :id";
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":id", $id);
@@ -59,7 +61,7 @@ class UsuarioDAO{
     }
     public function getById($id){
         try {
-            $sql = "SELECT * FROM usuario WHERE id = :id";
+            $sql = "SELECT * FROM fluxoFinanceiro WHERE id = :id";
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":id", $id);
             $p_sql->execute();
@@ -72,16 +74,17 @@ class UsuarioDAO{
         }
     }
     private function converterLinhaDaBaseDeDadosParaObjeto($row) {
-        $obj = new Usuario;
+        $obj = new FluxoFinanceiro;
         $obj->setId($row['id']);
-        $obj->setNome($row['nome']);
-        $obj->setEmail($row['email']);
-        $obj->setSenha($row['senha']);
+        $obj->setValor($row['valor']);
+        $obj->setTipo($row['tipo']);
+        $obj->setDataPagamento($row['dataPagamento']);
+        $obj->setFluxo($row['fluxo']);
         return $obj;
     }
     public function listAll (){
         try {
-            $sql = "SELECT * FROM usuario";
+            $sql = "SELECT * FROM fluxoFinanceiro";
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->execute();
             $row = $p_sql->fetch(PDO::FETCH_ASSOC);
@@ -101,7 +104,7 @@ class UsuarioDAO{
     }
     public function listWhere($restanteSql, $arrayDeParametros, $arrayDeValores){
         try {
-            $sql = "SELECT * FROM usuario ".$restanteSql;
+            $sql = "SELECT * FROM fluxoFinanceiro ".$restanteSql;
             $p_sql = BDPDO::getInstance()->prepare($sql);
             for($i = 0; $i < sizeof($arrayDeParametros); $i++){
                 $p_sql->bindValue($arrayDeParametros[$i], $arrayDeValores[$i]);

@@ -20,7 +20,7 @@ class ItemCompraDAO{
     }
     public function insert (ItemCompra $itemcompra){
         try {
-            $sql = "INSERT INTO itemcompra (nome,email,senha) VALUES (:nome,:email,:senha)"; 
+            $sql = "INSERT INTO itemcompra (idProduto,idCompra) VALUES (:idProduto,:idCompra)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":idProdtuo", $itemcompra->getIdProdtuo());
@@ -71,8 +71,8 @@ class ItemCompraDAO{
     private function converterLinhaDaBaseDeDadosParaObjeto($row) {
         $obj = new ItemCompra;
         $obj->setId($row['id']);
-        $obj->setNome($row['idProduto']);
-        $obj->setEmail($row['idCompra']);
+        $obj->setIdProduto($row['idProduto']);
+        $obj->setIdCompra($row['idCompra']);
         return $obj;
     }
     public function listAll (){
