@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/Usuario.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/BDPDO.php';
 
-class UsuarioDAO{
+class ItemCompraDAO{
     public static $instance;
 
     private function __construct() {
