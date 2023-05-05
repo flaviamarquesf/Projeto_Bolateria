@@ -5,7 +5,11 @@ class Cliente{
     private $email;
     private $senha;
     private $telefone;
-    private $endereco;
+    private $bairro;
+    private $cidade;
+    private $uf;
+    private $numero;
+
     function getId(){
         return $this->id;
     }
@@ -36,11 +40,29 @@ class Cliente{
     function setTelefone($telefone){
         $this->telefone=$telefone;
     }
-    function getEndereco(){
-        return $this->endereco;
+    function getBairro(){
+        return $this->bairro;
     }
-    function setEndereco($endereco){
-        $this->endereco=$endereco;
+    function setBairro ($bairro){
+        $this->bairro=$bairro;
+    }
+    function getCidade(){
+        return $this->cidade;
+    }
+    function setCidade($cidade){
+        $this->cidade=$cidade;
+    }
+    function getUf(){
+        return $this->uf;
+    }
+    function setUf($uf){
+        $this->uf=$uf;
+    }
+    function getNumero(){
+        return $this->numero;
+    }
+    function setNumero($numero){
+        $this->numero=$numero;
     }
 }
 ?>

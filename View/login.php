@@ -49,7 +49,7 @@
                                         ?>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="login" name="login" aria-describedby="emailHelp"
+                                                id="nome" name="nome" aria-describedby="emailHelp"
                                                 placeholder="Digite seu nome">
                                         </div>
                                         <div class="form-group">

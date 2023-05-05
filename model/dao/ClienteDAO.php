@@ -38,12 +38,18 @@ class ClienteDAO{
     }
     public function update ($cliente){
         try {
-            $sql = "UPDATE cliente SET nome=:nome,email=:email,senha=:senha WHERE id=:id"; 
+            $sql = "UPDATE cliente SET nome=:nome,email=:email,senha=:senha,telefone=:telefone,bairro=:bairro,cidade=:cidade,uf=:uf,numero=:numero WHERE id=:id"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
+            $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":nome", $cliente->getNome());
+            $p_sql->bindValue(":telefone", $cliente->getTelefone());
             $p_sql->bindValue(":email", $cliente->getEmail());
             $p_sql->bindValue(":senha", md5($cliente->getSenha()));
+            $p_sql->bindValue(":bairro", $cliente->getBairro());
+            $p_sql->bindValue(":cidade", $cliente->getCidade());
+            $p_sql->bindValue(":uf", $cliente->getUf());
+            $p_sql->bindValue(":numero", $cliente->getNumero());
             $p_sql->bindValue(":id", $cliente->getId());
             return $p_sql->execute();
             } catch (Exception $e) {
@@ -81,6 +87,11 @@ class ClienteDAO{
         $obj->setNome($row['nome']);
         $obj->setEmail($row['email']);
         $obj->setSenha($row['senha']);
+        $obj->setTelefone($row['telefone']);
+        $obj->setCidade($row['cidade']);
+        $obj->setUf($row['uf']);
+        $obj->setBairro($row['bairro']);
+        $obj->setNumero($row['numero']);
         return $obj;
     }
     public function listAll (){

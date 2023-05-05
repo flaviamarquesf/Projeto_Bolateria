@@ -1,8 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/Usuario.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/UsuarioPermissao.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/BDPDO.php';
 
-class UsuarioDAO{
+class UsuarioPermissaoDAO{
     public static $instance;
 
     private function __construct() {
@@ -13,34 +13,31 @@ class UsuarioDAO{
 
     if (!isset(self::$instance))
 
-    self::$instance = new UsuarioDAO();
+    self::$instance = new UsuarioPermissaoDAO();
 
     return self::$instance;
 
     }
-    public function insert (Usuario $usuario){
+    public function insert (UsuarioPermissao $usuarioPermissao){
         try {
-            $sql = "INSERT INTO usuario (nome,email,senha) VALUES (:nome,:email,:senha)"; 
+            $sql = "INSERT INTO usuarioPermissao (idUsuario,idPermissao) VALUES (:idUsuario,:idPermissao)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
-            $p_sql->bindValue(":nome", $usuario->getNome());
-            $p_sql->bindValue(":email", $usuario->getEmail());
-            //iremos critografar a senha para md5, assim o usuário terá mais segurança, já que frequentemente usamos a mesma senha para diversas aplicações.
-            $p_sql->bindValue(":senha", md5($usuario->getSenha()));
+            $p_sql->bindValue(":idUsuario", $usuarioPermissao->getIdUsuario());
+            $p_sql->bindValue(":idPermissao", $usuarioPermissao->getIdPermissao());
             return $p_sql->execute();
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();
             }
     }
-    public function update ($usuario){
+    public function update ($usuarioPermissao){
         try {
-            $sql = "UPDATE usuario SET nome=:nome,email=:email,senha=:senha WHERE id=:id"; 
+            $sql = "UPDATE usuarioPermissao SET idUsuario=:idUsuario,idPermissao=:idPermissao WHERE id=:id"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
-            $p_sql->bindValue(":nome", $usuario->getNome());
-            $p_sql->bindValue(":email", $usuario->getEmail());
-            $p_sql->bindValue(":senha", md5($usuario->getSenha()));
-            $p_sql->bindValue(":id", $usuario->getId());
+            $p_sql->bindValue(":idUsuario", $usuarioPermissao->getIdUsuario());
+            $p_sql->bindValue(":idPermissao", md5($usuarioPermissao->getIdPermissao()));
+            $p_sql->bindValue(":id", $usuarioPermissao->getId());
             return $p_sql->execute();
             } catch (Exception $e) {
             print "Erro ao executar a função de atualizar".$e->getMessage();
@@ -48,7 +45,7 @@ class UsuarioDAO{
     }
     public function delete ($id){
         try {
-            $sql = "DELETE FROM usuario WHERE id = :id";
+            $sql = "DELETE FROM usuarioPermissao WHERE id = :id";
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":id", $id);
@@ -59,7 +56,7 @@ class UsuarioDAO{
     }
     public function getById($id){
         try {
-            $sql = "SELECT * FROM usuario WHERE id = :id";
+            $sql = "SELECT * FROM usuarioPermissao WHERE id = :id";
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":id", $id);
             $p_sql->execute();
@@ -72,11 +69,10 @@ class UsuarioDAO{
         }
     }
     private function converterLinhaDaBaseDeDadosParaObjeto($row) {
-        $obj = new Usuario;
+        $obj = new UsuarioPermissao;
         $obj->setId($row['id']);
-        $obj->setNome($row['nome']);
-        $obj->setEmail($row['email']);
-        $obj->setSenha($row['senha']);
+        $obj->setIdUsuario($row['idUsuario']);
+        $obj->setIdPermissao($row['idPermissao']);
         return $obj;
     }
     public function listAll (){

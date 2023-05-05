@@ -1,0 +1,71 @@
+CREATE TABLE usuario(
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `senha` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE produto (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `precokg` DOUBLE NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE permissao (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE cliente (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `senha` VARCHAR(20) NOT NULL,
+  `telefone` VARCHAR(30) NOT NULL,  
+  `cidade` VARCHAR(100) NOT NULL,
+  `uf` VARCHAR(100) NOT NULL,
+  `bairro` VARCHAR(100) NOT NULL,
+  `numero` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+
+CREATE TABLE compra (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idCliente` INT NOT NULL,
+  `dataCompra` DATE NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE itemcompra (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idCompra` INT NOT NULL,
+  `idProduto` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+ALTER TABLE itemcompra ADD CONSTRAINT `keyCompra`
+  FOREIGN KEY (`idCompra`)
+  REFERENCES compra (`id`);
+
+ALTER TABLE `bolateria`.`itemcompra` 
+ADD CONSTRAINT `keyProduto`
+  FOREIGN KEY (`idProduto`)
+  REFERENCES `bolateria`.`produto` (`id`);
+
+CREATE TABLE fluxofinanceiro (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `valor` DOUBLE NOT NULL,
+  `dataPagamento` DATE NOT NULL,
+  `fluxo` DOUBLE NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE usuariopermissao (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idUsuario` INT NOT NULL,
+  `idPermissao` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `keyUsuario`
+    FOREIGN KEY (`idUsuario`)
+    REFERENCES `bolateria`.`usuario` (`id`),
+  CONSTRAINT `keyPermissao`
+    FOREIGN KEY (`idPermissao`)
+    REFERENCES `bolateria`.`permissao` (`id`));
