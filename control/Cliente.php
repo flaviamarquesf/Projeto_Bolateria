@@ -18,8 +18,5 @@ $obj->setCidade($_POST['cidade']);
 $obj->setUf($_POST['uf']);
 $obj->setNumero($_POST['numero']);
 
-
-
-
 ClienteDAO::getInstance()->insert($obj);
 ?>
