@@ -91,11 +91,17 @@
                                                 echo '<td>'.$obj->getEmail().'</td>';
                                                 echo '<td>'.$obj->getSenha().'</td>';
                                                 echo '<td>'; ?>
-                                                <a href='editarUsuario.php' class='btn btn-primary btn-icon-split btn-sm'>
+                                                <a href='cadastrarUsuario.php?id=<?php echo $obj->getId();?>' class='btn btn-primary btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-pen'></i>
                                                     </span>
                                                     <span class="text">Editar</span>
+                                                </a>
+                                                <a href='deletarUsuario.php' class='btn btn-danger btn-icon-split btn-sm'>
+                                                    <span class='icon text-white-50'>
+                                                        <i class='fas fa-trash'></i>
+                                                    </span>
+                                                    <span class="text">Deletar</span>
                                                 </a>
                                                 <?php echo '</td>';
                                                 echo '</tr>';

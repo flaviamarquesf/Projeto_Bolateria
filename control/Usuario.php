@@ -11,7 +11,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.
 $obj = new Usuario();
 $obj->setNome($_POST['nome']);
 $obj->setEmail($_POST['email']);
-$obj->setSenha($_POST['senha']);
+$obj->setSenha(md5($_POST['senha']));
 
 UsuarioDAO::getInstance()->insert($obj);
+header('location: ../View/listarUsuario.php');
 ?>
