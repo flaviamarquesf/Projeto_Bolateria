@@ -39,6 +39,19 @@
             <a class="collapse-item" href="listarUsuario.php">listar</a>
         </div>
     </div>
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduto"
+        aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Produto</span>
+    </a>
+    <div id="collapseProduto" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">tipos:</h6>
+            <a class="collapse-item" href="cadastrarProduto.php">cadastrar</a>
+            <a class="collapse-item" href="listarProduto.php">listar</a>
+        </div>
+    </div>
 </li>
 <!--uto
 <li class="nav-item">
