@@ -1,2 +1,2 @@
 # Bolateria
-Site para uma bolateria.
+Site para uma bolateria. (PHP, JavaScript, HTML, CSS)
