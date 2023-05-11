@@ -78,12 +78,51 @@ if(isset($_GET['id'])){
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                               <form action="../control/usuario.php"  method="Post">
-                                   Nome: <input type="text" id="nome" name="nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>"> <br>
-                                   Email: <input type="email" id="email" name="email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>"> <br>
-                                   Senha: <input type="password" id="senha" name="senha" > <br>
-                                   <input type="submit" name="enviar" id="enviar" value="Enviar">
-                               </form>
+                            <div class="container">
+
+                                <div class="card o-hidden border-0 shadow-lg my-5">
+                                    <div class="card-body p-0">
+                                        <!-- Nested Row within Card Body -->
+                                        <div class="row">
+                                            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                                            <div class="col-lg-7">
+                                                <div class="p-5">
+                                                    <div class="text-center">
+                                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                                    </div>
+                                                    <form action="../control/usuario.php"  method="Post">
+                                                        <div class="form-group">
+                                                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <input type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>">
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                                                            </div>
+                                                        </div>
+                                                        <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
+                                                        <hr>
+                                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                                            <i class="fab fa-google fa-fw"></i> Register with Google
+                                                        </a>
+                                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                                            <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                                        </a>
+                                                    </form>
+                                                    <hr>
+                                                    <div class="text-center">
+                                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <a class="small" href="login.php">Already have an account? Login!</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
