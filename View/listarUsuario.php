@@ -97,12 +97,30 @@
                                                     </span>
                                                     <span class="text">Editar</span>
                                                 </a>
-                                                <a href='deletarUsuario.php' class='btn btn-danger btn-icon-split btn-sm'>
+                                                <a href= '../control/usuarioDeletar.php?id=<?php echo $obj->getId();?>'data-toggle='modal' data-target="#modal<?php echo $obj->getId();?>" class='btn btn-danger btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-trash'></i>
-                                                    </span>
+                                                    </span> 
                                                     <span class="text">Deletar</span>
                                                 </a>
+                                                <div class="modal fade" id="modal<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Deletar</h5>
+                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">Tem certeza que deseja deletar?</div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                                <a class="btn btn-danger" href="../control/usuarioDeletar.php?id=<?php echo $obj->getId();?>">Deletar</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <?php echo '</td>';
                                                 echo '</tr>';
                                             }

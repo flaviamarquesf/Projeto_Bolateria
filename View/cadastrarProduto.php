@@ -91,7 +91,8 @@ if(isset($_GET['id'])){
                                                         <h1 class="h4 text-gray-900 mb-4">Crie Produto</h1>
                                                     </div>
                                                     <form action="../control/produto.php"  method="POST">
-                                                        <div class="form-group">
+                                                    <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
+                                                    <div class="form-group">
                                                         <input type="text" id="nome" name="nome" placeholder="Nome do produto" value="<?php echo ($objProduto==NULL?"":$objProduto->getNome());?>">
                                                         </div>
                                                         <div class="form-group">

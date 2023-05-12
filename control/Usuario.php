@@ -12,7 +12,10 @@ $obj = new Usuario();
 $obj->setNome($_POST['nome']);
 $obj->setEmail($_POST['email']);
 $obj->setSenha(md5($_POST['senha']));
-
-UsuarioDAO::getInstance()->insert($obj);
+$obj->setId($_POST['id']);
+if($obj->getId() !=0)
+    UsuarioDAO::getInstance()->update($obj);
+else
+    UsuarioDAO::getInstance()->insert($obj);
 header('location: ../View/listarUsuario.php');
 ?>
