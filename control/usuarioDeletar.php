@@ -3,8 +3,4 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.
 
 UsuarioDAO::getInstance()->delete($_GET['id']);
 header("location: ../View/listarUsuario.php");
-
-
-
-
 ?>
