@@ -13,4 +13,5 @@ $obj->setNome($_POST['nome']);
 $obj->setPrecokg($_POST['precokg']);
 
 ProdutoDAO::getInstance()->insert($obj);
+header('location: ../View/listarProduto.php');
 ?>

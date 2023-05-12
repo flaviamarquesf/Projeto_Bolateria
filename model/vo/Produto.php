@@ -14,7 +14,7 @@ class Produto{
         return $this->nome;
     }
     function setNome($nome){
-        $this->id=$nome;
+        $this->nome=$nome;
     }
     function getPrecokg(){
         return $this->precokg;

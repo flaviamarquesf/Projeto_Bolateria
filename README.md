@@ -1,2 +1,2 @@
-# Projeto_Bolateria
-Site para uma bolateria.
+# Bolateria
+Site para uma bolateria. (PHP, JavaScript, HTML, CSS)

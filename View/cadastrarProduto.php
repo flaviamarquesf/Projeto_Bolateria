@@ -78,11 +78,32 @@ if(isset($_GET['id'])){
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                               <form action="../control/produto.php"  method="Post">
-                                   Nome: <input type="text" id="nome" name="nome" value="<?php echo ($objProduto==NULL?"":$objProduto->getNome());?>"> <br>
-                                   Preço/kg: <input type="number" id="precokg" name="precokg" value="<?php echo ($objProduto==NULL?"":$objProduto->getPrecokg());?>"> <br>
-                                   <input type="submit" name="enviar" id="enviar" value="Enviar">
-                               </form>
+                            <div class="container">
+
+                                <div class="card o-hidden border-0 shadow-lg my-5">
+                                    <div class="card-body p-0">
+                                        <!-- Nested Row within Card Body -->
+                                        <div class="row">
+                                            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                                            <div class="col-lg-7">
+                                                <div class="p-5">
+                                                    <div class="text-center">
+                                                        <h1 class="h4 text-gray-900 mb-4">Crie Produto</h1>
+                                                    </div>
+                                                    <form action="../control/produto.php"  method="POST">
+                                                        <div class="form-group">
+                                                        <input type="text" id="nome" name="nome" placeholder="Nome do produto" value="<?php echo ($objProduto==NULL?"":$objProduto->getNome());?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <input type="number" id="precokg" name="precokg" placeholder="Preço/kg" step="0.010" value="<?php echo ($objProduto==NULL?"":$objProduto->getPrecokg());?>">
+                                                        </div>
+                                                        <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

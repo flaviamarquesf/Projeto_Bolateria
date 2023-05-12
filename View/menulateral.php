@@ -28,7 +28,7 @@
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuario"
         aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fas fa-fw fa-male"></i>
         <span>Usuário</span>
     </a>
     <div id="collapseUsuario" class="collapse" aria-labelledby="headingUtilities"
@@ -41,8 +41,8 @@
     </div>
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduto"
         aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Usuário</span>
+        <i class="fas fa-fw fa-gift"></i>
+        <span>Produto</span>
     </a>
     <div id="collapseProduto" class="collapse" aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar">

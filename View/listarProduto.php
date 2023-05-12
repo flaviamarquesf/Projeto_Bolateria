@@ -66,8 +66,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Nome</th>
-                                            <th>email</th>
-                                            <th>senha/kg</th>
+                                            <th>Preço/kg</th>
                                             <th>ações</th>
                                         </tr>
                                     </thead>
@@ -75,8 +74,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Nome</th>
-                                            <th>email</th>
-                                            <th>senha</th>
+                                            <th>Preço/kg</th>
                                             <th>ações</th>
                                         </tr>
                                     </tfoot>
