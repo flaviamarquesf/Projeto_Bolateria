@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Listar Usuarios</title>
+    <title>Listar Produtos</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,22 +82,21 @@
                                     </tfoot>
                                     <tbody>
                                         <?php
-                                            require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
-                                            $lista = UsuarioDAO::getInstance()->listAll();
+                                            require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
+                                            $lista = ProdutoDAO::getInstance()->listAll();
                                             foreach ($lista as $obj){
                                                 echo '<tr>';
                                                 echo '<td>'.$obj->getId().'</td>';
                                                 echo '<td>'.$obj->getNome().'</td>';
-                                                echo '<td>'.$obj->getEmail().'</td>';
-                                                echo '<td>'.$obj->getSenha().'</td>';
+                                                echo '<td>'.$obj->getPrecokg().'</td>';
                                                 echo '<td>'; ?>
-                                                <a href='cadastrarUsuario.php?id=<?php echo $obj->getId();?>' class='btn btn-primary btn-icon-split btn-sm'>
+                                                <a href='cadastrarProduto.php?id=<?php echo $obj->getId();?>' class='btn btn-primary btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-pen'></i>
                                                     </span>
                                                     <span class="text">Editar</span>
                                                 </a>
-                                                <a href='deletarUsuario.php' class='btn btn-danger btn-icon-split btn-sm'>
+                                                <a href='deletarProduto.php' class='btn btn-danger btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-trash'></i>
                                                     </span>

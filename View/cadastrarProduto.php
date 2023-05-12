@@ -1,3 +1,21 @@
+<?php
+//se estiver setado é pq é pra atualizar
+$objProduto=NULL;
+if(isset($_GET['id'])){
+       //buscar da base o cara com o id do get
+       //e salvar na variavel $objUsuario;
+       //Para usar o DAO eu preciso importar ele
+    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
+    //usar o meu getByid da classe usuario dao e armazenar o restorno
+    //na variável $objUsuario
+   $objProduto=ProdutoDAO::getInstance()->getById($_GET['id']);
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +27,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Listar Usuarios</title>
+    <title>Cadastrar Produtos</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,7 +62,7 @@
 
                 <!-- Topbar -->
                 <?php
-                include_once('menutopo.php');
+                    include_once ('menutopo.php');
                 ?>
                 <!-- End of Topbar -->
 
@@ -52,63 +70,19 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Listar Produto</h1>
-
+                    <h1 class="h3 mb-2 text-gray-800">Cadastrar</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Produtos</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Cadastre aqui</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Nome</th>
-                                            <th>email</th>
-                                            <th>senha/kg</th>
-                                            <th>ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Nome</th>
-                                            <th>email</th>
-                                            <th>senha</th>
-                                            <th>ações</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php
-                                            require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
-                                            $lista = UsuarioDAO::getInstance()->listAll();
-                                            foreach ($lista as $obj){
-                                                echo '<tr>';
-                                                echo '<td>'.$obj->getId().'</td>';
-                                                echo '<td>'.$obj->getNome().'</td>';
-                                                echo '<td>'.$obj->getEmail().'</td>';
-                                                echo '<td>'.$obj->getSenha().'</td>';
-                                                echo '<td>'; ?>
-                                                <a href='cadastrarUsuario.php?id=<?php echo $obj->getId();?>' class='btn btn-primary btn-icon-split btn-sm'>
-                                                    <span class='icon text-white-50'>
-                                                        <i class='fas fa-pen'></i>
-                                                    </span>
-                                                    <span class="text">Editar</span>
-                                                </a>
-                                                <a href='deletarUsuario.php' class='btn btn-danger btn-icon-split btn-sm'>
-                                                    <span class='icon text-white-50'>
-                                                        <i class='fas fa-trash'></i>
-                                                    </span>
-                                                    <span class="text">Deletar</span>
-                                                </a>
-                                                <?php echo '</td>';
-                                                echo '</tr>';
-                                            }
-                                        ?>
-                                    </tbody>
-                                </table>
+                               <form action="../control/produto.php"  method="Post">
+                                   Nome: <input type="text" id="nome" name="nome" value="<?php echo ($objProduto==NULL?"":$objProduto->getNome());?>"> <br>
+                                   Preço/kg: <input type="number" id="precokg" name="precokg" value="<?php echo ($objProduto==NULL?"":$objProduto->getPrecokg());?>"> <br>
+                                   <input type="submit" name="enviar" id="enviar" value="Enviar">
+                               </form>
                             </div>
                         </div>
                     </div>
@@ -121,7 +95,7 @@
 
             <!-- Footer -->
             <?php
-            include_once('menubaixo.php');
+            include_once ('menubaixo.php');
             ?>
             <!-- End of Footer -->
 
