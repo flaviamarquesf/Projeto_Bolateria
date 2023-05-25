@@ -12,6 +12,5 @@ $obj = new UsuarioPermissao();
 $obj->seIdUsuario($_POST['idUsuario']);
 $obj->setIdPermissao($_POST['idPermissao']);
 
-
 UsuarioPermissaoDAO::getInstance()->insert($obj);
 ?>

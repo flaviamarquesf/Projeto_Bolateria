@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 //se estiver setado é pq é pra atualizar
 $objUsuario=NULL;
 if(isset($_GET['id'])){

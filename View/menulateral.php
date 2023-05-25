@@ -35,8 +35,17 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">tipos:</h6>
-            <a class="collapse-item" href="cadastrarUsuario.php">cadastrar</a>
-            <a class="collapse-item" href="listarUsuario.php">listar</a>
+            <?php 
+               require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
+              if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Usuário")){
+                  echo "<a class='collapse-item' href='cadastrarUsuario.php'>cadastrar</a>";
+              }
+              if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Usuário")){
+                echo "<a class='collapse-item' href='listarUsuario.php'>listar</a>";
+            }
+            ?>
+           
+            
         </div>
     </div>
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduto"

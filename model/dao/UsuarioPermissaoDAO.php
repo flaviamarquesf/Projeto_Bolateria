@@ -36,7 +36,7 @@ class UsuarioPermissaoDAO{
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":idUsuario", $usuarioPermissao->getIdUsuario());
-            $p_sql->bindValue(":idPermissao", md5($usuarioPermissao->getIdPermissao()));
+            $p_sql->bindValue(":idPermissao", $usuarioPermissao->getIdPermissao());
             $p_sql->bindValue(":id", $usuarioPermissao->getId());
             return $p_sql->execute();
             } catch (Exception $e) {
@@ -77,7 +77,7 @@ class UsuarioPermissaoDAO{
     }
     public function listAll (){
         try {
-            $sql = "SELECT * FROM usuario";
+            $sql = "SELECT * FROM usuarioPermissao";
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->execute();
             $row = $p_sql->fetch(PDO::FETCH_ASSOC);
@@ -97,12 +97,19 @@ class UsuarioPermissaoDAO{
     }
     public function listWhere($restanteSql, $arrayDeParametros, $arrayDeValores){
         try {
-            $sql = "SELECT * FROM usuario ".$restanteSql;
+          
+            $sql = "SELECT * FROM usuarioPermissao ".$restanteSql;
+          
+           
             $p_sql = BDPDO::getInstance()->prepare($sql);
+           
+            
             for($i = 0; $i < sizeof($arrayDeParametros); $i++){
                 $p_sql->bindValue($arrayDeParametros[$i], $arrayDeValores[$i]);
             }
+     
             $p_sql->execute();
+            
             $row = $p_sql->fetch(PDO::FETCH_ASSOC);
             $lista = array();
             while ($row){
