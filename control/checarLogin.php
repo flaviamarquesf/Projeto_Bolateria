@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.
 $daoUsuario = UsuarioDAO::getInstance();
 $sql = " where nome=:nome and senha=:senha";
 $arrayDeParametros = array(":nome",":senha");
-$arrayDeValores = array($_POST['nome'],( $_POST['senha']));
+$arrayDeValores = array($_POST['nome'],md5( $_POST['senha']));
 $lista = $daoUsuario->listWhere($sql, $arrayDeParametros, $arrayDeValores);
 
 if(count($lista)>0){
