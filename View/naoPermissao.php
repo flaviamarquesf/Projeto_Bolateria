@@ -3,26 +3,7 @@ session_start();
 if(!isset($_SESSION['idUsuarioLogado'])){
     header("Location: login.php");
 }
-require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
-$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Usuário");
-if(!$possuiPermissao){
-    header("location: naoPermissao.php?permissao=CadastrarUsuario");
-}
-//se estiver setado é pq é pra atualizar
-$objUsuario=NULL;
-if(isset($_GET['id'])){
-       //buscar da base o cara com o id do get
-       //e salvar na variavel $objUsuario;
-       //Para usar o DAO eu preciso importar ele
-    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
-    //usar o meu getByid da classe usuario dao e armazenar o restorno
-    //na variável $objUsuario
-   $objUsuario=UsuarioDAO::getInstance()->getById($_GET['id']);
-}
-
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -99,35 +80,8 @@ if(isset($_GET['id'])){
                                                     <div class="text-center">
                                                         <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                                     </div>
-                                                    <form action="../control/usuario.php"  method="Post">
-                                                        <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
-                                                        <div class="form-group">
-                                                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>">
-                                                        </div>
-                                                        <div class="form-group">
-                                                        <input type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>">
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-                                                            </div>
-                                                        </div>
-                                                        <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
-                                                        <hr>
-                                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                                            <i class="fab fa-google fa-fw"></i> Register with Google
-                                                        </a>
-                                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                                            <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                                        </a>
-                                                    </form>
-                                                    <hr>
-                                                    <div class="text-center">
-                                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <a class="small" href="login.php">Already have an account? Login!</a>
-                                                    </div>
+                                                    <h3>Você não tem permissão. Contate seu supervisor!</h3>
+                                                    <h3>Nome da permissão: <?php echo $_GET['permissao']; ?></h3>
                                                 </div>
                                             </div>
                                         </div>
