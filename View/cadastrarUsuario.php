@@ -1,7 +1,8 @@
 <?php
-
 session_start();
-
+if(!isset($_SESSION['idUsuarioLogado'])){
+    header("Location: login.php");
+}
 //se estiver setado é pq é pra atualizar
 $objUsuario=NULL;
 if(isset($_GET['id'])){
