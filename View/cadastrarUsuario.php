@@ -97,7 +97,7 @@ if(isset($_GET['id'])){
                                             <div class="col-lg-7">
                                                 <div class="p-5">
                                                     <div class="text-center">
-                                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                                        <h1 class="h4 text-gray-900 mb-4">Crie sua conta!</h1>
                                                     </div>
                                                     <form action="../control/usuario.php"  method="Post">
                                                         <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">

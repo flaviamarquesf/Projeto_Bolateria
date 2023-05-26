@@ -3,6 +3,11 @@ session_start();
 if(!isset($_SESSION['idUsuarioLogado'])){
     header("Location: login.php");
 }
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
+$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Produto");
+if(!$possuiPermissao){
+    header("location: naoPermissao.php?permissao=ListarProduto");
+}
 //se estiver setado é pq é pra atualizar
 $objProduto=NULL;
 if(isset($_GET['id'])){

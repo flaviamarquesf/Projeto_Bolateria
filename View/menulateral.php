@@ -38,14 +38,12 @@
             <?php 
                require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
               if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Usuário")){
-                  echo "<a class='collapse-item' href='cadastrarUsuario.php'>cadastrar</a>";
+                  echo "<a class='collapse-item' href='cadastrarUsuario.php'>Cadastrar</a>";
               }
               if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Usuário")){
-                echo "<a class='collapse-item' href='listarUsuario.php'>listar</a>";
+                echo "<a class='collapse-item' href='listarUsuario.php'>Listar</a>";
             }
             ?>
-           
-            
         </div>
     </div>
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduto"
@@ -57,8 +55,15 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">tipos:</h6>
-            <a class="collapse-item" href="cadastrarProduto.php">cadastrar</a>
-            <a class="collapse-item" href="listarProduto.php">listar</a>
+            <?php 
+               require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
+              if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Produto")){
+                  echo "<a class='collapse-item' href='cadastrarProduto.php'>Cadastrar</a>";
+              }
+              if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Produto")){
+                echo "<a class='collapse-item' href='listarProduto.php'>Listar</a>";
+            }
+            ?>
         </div>
     </div>
 </li>
