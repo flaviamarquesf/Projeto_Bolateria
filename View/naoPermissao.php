@@ -17,7 +17,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cadastrar Usuários</title>
+    <title>Permissão</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -60,11 +60,11 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Cadastrar</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Erro ao tentar acessar essa página</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Cadastre aqui</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Erro</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -78,7 +78,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                             <div class="col-lg-7">
                                                 <div class="p-5">
                                                     <div class="text-center">
-                                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                                        <h1 class="h4 text-gray-900 mb-4">Atenção!</h1>
                                                     </div>
                                                     <h3>Você não tem permissão. Contate seu supervisor!</h3>
                                                     <h3>Nome da permissão: <?php echo $_GET['permissao']; ?></h3>
