@@ -4,20 +4,20 @@ if(!isset($_SESSION['idUsuarioLogado'])){
     header("Location: login.php");
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
-$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Usuário");
+$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Cliente");
 if(!$possuiPermissao){
-    header("location: naoPermissao.php?permissao=CadastrarUsuario");
+    header("location: naoPermissao.php?permissao=CadastrarCliente");
 }
 //se estiver setado é pq é pra atualizar
-$objUsuario=NULL;
+$objCliente=NULL;
 if(isset($_GET['id'])){
        //buscar da base o cara com o id do get
        //e salvar na variavel $objUsuario;
        //Para usar o DAO eu preciso importar ele
-    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.php';
     //usar o meu getByid da classe usuario dao e armazenar o restorno
     //na variável $objUsuario
-   $objUsuario=UsuarioDAO::getInstance()->getById($_GET['id']);
+   $objCliente=ClienteDAO::getInstance()->getById($_GET['id']);
 }
 
 ?>
@@ -36,7 +36,7 @@ if(isset($_GET['id'])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cadastrar Usuários</title>
+    <title>Cadastrar Clientes</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -97,27 +97,39 @@ if(isset($_GET['id'])){
                                             <div class="col-lg-7">
                                                 <div class="p-5">
                                                     <div class="text-center">
-                                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                                        <h1 class="h4 text-gray-900 mb-4">Cadastre um Cliente</h1>
                                                     </div>
-                                                    <form action="../control/usuario.php"  method="Post">
-                                                        <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
+                                                    <form action="../control/cliente.php"  method="POST">
+                                                    <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                                         <div class="form-group">
-                                                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>">
+                                                            <input type="text" id="nome" class="form-control"  name="nome" placeholder="Nome completo:" value="<?php echo ($objCliente==NULL?"":$objCliente->getNome());?>">
                                                         </div>
                                                         <div class="form-group">
-                                                        <input type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>">
+                                                            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail:" value="<?php echo ($objCliente==NULL?"":$objCliente->getEmail());?>">
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                                                        <div class="form-group">
+                                                            <input type="text" id="tel" name="telefone" class="form-control" placeholder="Telefone:" value="<?php echo ($objCliente==NULL?"":$objCliente->getTelefone());?>">
+                                                        </div>
+                                                        <div class='endereco'><hr>
+                                                            <div class="form-group">
+                                                                <input type="text" id="uf" name="uf" placeholder="UF" value="<?php echo ($objCliente==NULL?"":$objCliente->getUf());?>">
                                                             </div>
+                                                            <div class="form-group">
+                                                                <input type="text" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo ($objCliente==NULL?"":$objCliente->getCidade());?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo ($objCliente==NULL?"":$objCliente->getBairro());?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="number" id="numero" name="numero" placeholder="numero" value="<?php echo ($objCliente==NULL?"":$objCliente->getNumero());?>">
+                                                            </div>
+                                                            <hr>
                                                         </div>
+                                                        <div class="form-group">
+                                                                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha:">
+                                                            </div>
                                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                                     </form>
-                                                    <hr>
-                                                    <div class="text-center">
-                                                        <a class="small" href="login.php">Already have an account? Login!</a>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

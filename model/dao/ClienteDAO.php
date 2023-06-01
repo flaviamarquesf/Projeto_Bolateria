@@ -95,7 +95,46 @@ class ClienteDAO{
         return $obj;
     }
     public function listAll (){
+        try {
+            $sql = "SELECT * FROM cliente";
+            $p_sql = BDPDO::getInstance()->prepare($sql);
+            $p_sql->execute();
+            $row = $p_sql->fetch(PDO::FETCH_ASSOC);
+            $lista = array();
+            while ($row){
+                $lista[]=$this->converterLinhaDaBaseDeDadosParaObjeto($row);
+                $row = $p_sql->fetch(PDO::FETCH_ASSOC);
+            }
+            return $lista;
+        } catch (Exception $e) {
+            print "Ocorreu um erro ao tentar executar esta ação, foi gerado
+            um LOG do mesmo, tente novamente mais tarde.";
+            GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->
+            getCode() . " Mensagem: " . $e->getMessage());
+        }
         
+    }
+    public function listWhere($restanteSql, $arrayDeParametros, $arrayDeValores){
+        try {
+            $sql = "SELECT * FROM cliente ".$restanteSql;
+            $p_sql = BDPDO::getInstance()->prepare($sql);
+            for($i = 0; $i < sizeof($arrayDeParametros); $i++){
+                $p_sql->bindValue($arrayDeParametros[$i], $arrayDeValores[$i]);
+            }
+            $p_sql->execute();
+            $row = $p_sql->fetch(PDO::FETCH_ASSOC);
+            $lista = array();
+            while ($row){
+                $lista[]=$this->converterLinhaDaBaseDeDadosParaObjeto($row);
+                $row = $p_sql->fetch(PDO::FETCH_ASSOC);
+            }
+            return $lista;
+        } catch (Exception $e) {
+            print "Ocorreu um erro ao tentar executar esta ação, foi gerado
+            um LOG do mesmo, tente novamente mais tarde.";
+            GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->
+            getCode() . " Mensagem: " . $e->getMessage());
+        }
     }
 }
 ?>

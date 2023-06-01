@@ -18,5 +18,9 @@ $obj->setCidade($_POST['cidade']);
 $obj->setUf($_POST['uf']);
 $obj->setNumero($_POST['numero']);
 
-ClienteDAO::getInstance()->insert($obj);
+if($obj->getId() !=0)
+    ClienteDAO::getInstance()->update($obj);
+else
+    ClienteDAO::getInstance()->insert($obj);
+header('location: ../View/listarCliente.php');
 ?>
