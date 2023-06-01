@@ -17,6 +17,10 @@ $obj->setBairro($_POST['bairro']);
 $obj->setCidade($_POST['cidade']);
 $obj->setUf($_POST['uf']);
 $obj->setNumero($_POST['numero']);
-
-ClienteDAO::getInstance()->insert($obj);
+$obj->setId($_POST['id']);
+if($obj->getId() !=0)
+    ClienteDAO::getInstance()->update($obj);
+else
+    ClienteDAO::getInstance()->insert($obj);
+header('location: ../index.php');
 ?>
