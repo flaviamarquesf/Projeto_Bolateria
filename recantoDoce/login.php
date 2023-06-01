@@ -30,7 +30,7 @@
                                 <span class="section-heading-upper">Login</span>
                                 <span class="section-heading-lower">Seja bem vindo!</span>
                             </h2>
-                            <form method="post" action="control/checarLogin.php">
+                            <form method="post" action="../control/checarLoginCliente.php">
                                         <?php
                                         if (isset($_GET['erroNoLogin'])){
                                             echo "<div style='color:red'>Email e Senha errados</div>";
@@ -95,12 +95,8 @@
                 </div>
             </div>
         </section>
-        <footer class="footer text-faded text-center py-5">
-            <div class="container"><p class="m-0 small">Bolateria 5 estrelas. Desde 2012</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <?php
+            include_once('menuBaixo.php');
+        ?>
     </body>
 </html>

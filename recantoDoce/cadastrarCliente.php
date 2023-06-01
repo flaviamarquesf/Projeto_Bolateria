@@ -1,8 +1,4 @@
 <?php
-session_start();
-if(!isset($_SESSION['idClienteLogado'])){
-    header("Location: login.php");
-}
 //se estiver setado é pq é pra atualizar
 $objCliente=NULL;
 if(isset($_GET['id'])){
@@ -48,21 +44,36 @@ if(isset($_GET['id'])){
                                 <span class="section-heading-upper">Cadastro</span>
                                 <span class="section-heading-lower">Seja bem vindo!</span>
                             </h2>
-                            <form method="post" action="control/cliente.php">
+                            <form method="post" action="../control/cliente.php">
                                 <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                 <div class="list-unstyled list-hours mb-5 text-left mx-auto">
-                                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objCliente==NULL?"":$objCliente->getNome());?>" class="list-unstyled-item list-hours-item d-flex>
+                                    <input type="text" id="nome" name="nome" placeholder="Nome completo" value="<?php echo ($objCliente==NULL?"":$objCliente->getNome());?>" class="list-unstyled-item list-hours-item d-flex">
                                 </div>
                                 <div class="list-unstyled list-hours mb-5 text-left mx-auto">
-                                <input type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objCliente==NULL?"":$objCliente->getEmail());?>" class="list-unstyled-item list-hours-item d-flex>
+                                    <input type="email" id="email" name="email" placeholder="Email" value="<?php echo ($objCliente==NULL?"":$objCliente->getEmail());?>" class="list-unstyled-item list-hours-item d-flex">
                                 </div>
-                                <div class="list-unstyled list-hours mb-5 text-left mx-auto row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" class="list-unstyled-item list-hours-item d-flex>
+                                <div class="list-unstyled list-hours mb-5 text-left mx-auto">
+                                    <input type="text" id="telefone" name="telefone" placeholder="(85) 98899-8899" value="<?php echo ($objCliente==NULL?"":$objCliente->getTelefone());?>" class="list-unstyled-item list-hours-item d-flex">
                                 </div>
+                                <div class="endereco"><hr>
+                                    <div class="list-unstyled list-hours mb-5 text-left mx-auto">
+                                        <input type="text" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo ($objCliente==NULL?"":$objCliente->getBairro());?>" class="list-unstyled-item list-hours-item d-flex">
+                                    </div>
+                                    <div class="list-unstyled list-hours mb-5 text-left mx-auto">
+                                        <input type="text" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo ($objCliente==NULL?"":$objCliente->getCidade());?>" class="list-unstyled-item list-hours-item d-flex">
+                                    </div>
+                                    <div class="list-unstyled list-hours mb-5 text-left mx-auto">
+                                        <input type="text" id="uf" name="uf" placeholder="Estado" value="<?php echo ($objCliente==NULL?"":$objCliente->getUf());?>" class="list-unstyled-item list-hours-item d-flex">
+                                    </div>
+                                    <div class="list-unstyled list-hours mb-5 text-left mx-auto">
+                                        <input type="number" id="numero" name="numero" placeholder="N° de residência" value="<?php echo ($objCliente==NULL?"":$objCliente->getNumero());?>" class="list-unstyled-item list-hours-item d-flex">
+                                    </div>
+                                    <hr>
                                 </div>
-                                <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
-                                <hr>
+                                <div class="list-unstyled list-hours mb-5 text-left mx-auto">
+                                <input type="password" id="senha" name="senha" placeholder="Senha" class="list-unstyled-item list-hours-item d-flex">
+                                </div>
+                                <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Cadastrar">
                                     <br>
                             <p class="address mb-5">
                                 <em>
@@ -104,12 +115,8 @@ if(isset($_GET['id'])){
                 </div>
             </div>
         </section>
-        <footer class="footer text-faded text-center py-5">
-            <div class="container"><p class="m-0 small">Bolateria 5 estrelas. Desde 2012</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <?php
+            include_once('menuBaixo.php');
+        ?>
     </body>
 </html>

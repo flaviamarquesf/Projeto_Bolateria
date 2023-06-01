@@ -9,10 +9,10 @@ $lista = $daoCliente->listWhere($sql, $arrayDeParametros, $arrayDeValores);
 if(count($lista)>0){
     session_start();
     $_SESSION['idClienteLogado']=$lista[0]->getId();
-   header("Location: ../index.php");
+   header("Location: ../recantoDoce/index.php");
     echo "login feito com sucesso";
 }else{
-  header("Location: ../login.php?erroNoLogin=true");
+  header("Location: ../recantoDoce/login.php?erroNoLogin=true");
     echo "senha errada";
 }
 ?>
