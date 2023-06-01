@@ -63,29 +63,6 @@ if(isset($_GET['id'])){
                                 </div>
                                 <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                 <hr>
-                                        <?php
-                                        if (isset($_GET['erroNoLogin'])){
-                                            echo "<div style='color:red'>Email e Senha errados</div>";
-                                        }
-                                        ?>
-                                        <div class="list-unstyled list-hours mb-5 text-left mx-auto">
-                                            <input type="text" class="list-unstyled-item list-hours-item d-flex"
-                                                id="nome" name="nome" aria-describedby="emailHelp"
-                                                placeholder="Digite seu nome">
-                                        </div>
-                                        <div class="list-unstyled list-hours mb-5 text-left mx-auto">
-                                            <input type="password" class="list-unstyled-item list-hours-item d-flex"
-                                                id="senha" name="senha" placeholder="digite sua senha">
-                                        </div>
-                                        <div class="list-unstyled list-hours mb-5 text-left mx-auto">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Lembre-se de mim
-                                                    </label>
-                                            </div>
-                                        </div>
-                                        <input type="submit" value="Entre" class="btn btn-primary btn-user btn-block">
-                                    </form>
                                     <br>
                             <p class="address mb-5">
                                 <em>
