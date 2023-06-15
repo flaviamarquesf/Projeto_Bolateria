@@ -32,7 +32,7 @@ $objCliente=ClienteDAO::getInstance()->getById($_SESSION['idClienteLogado']);
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-                <span class="site-heading-upper text-primary mb-3">Seja bem vindo <?php echo $objCliente->getNome(); ?> ao</span>
+                <span class="site-heading-upper text-primary mb-3">Seja bem vindo, <?php echo $objCliente->getNome().", "; ?> ao</span>
                 <span class="site-heading-lower">Recanto Doce</span>
             </h1>
         </header>

@@ -64,12 +64,12 @@ if(!$possuiPermissao){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Listar Produto</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Listar Usuário</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Produtos</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Usuários</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -79,7 +79,6 @@ if(!$possuiPermissao){
                                             <th>Id</th>
                                             <th>Nome</th>
                                             <th>email</th>
-                                            <th>senha/kg</th>
                                             <th>ações</th>
                                         </tr>
                                     </thead>
@@ -88,7 +87,6 @@ if(!$possuiPermissao){
                                             <th>Id</th>
                                             <th>Nome</th>
                                             <th>email</th>
-                                            <th>senha</th>
                                             <th>ações</th>
                                         </tr>
                                     </tfoot>
@@ -101,7 +99,6 @@ if(!$possuiPermissao){
                                                 echo '<td>'.$obj->getId().'</td>';
                                                 echo '<td>'.$obj->getNome().'</td>';
                                                 echo '<td>'.$obj->getEmail().'</td>';
-                                                echo '<td>'.$obj->getSenha().'</td>';
                                                 echo '<td>'; ?>
                                                 <a href='cadastrarUsuario.php?id=<?php echo $obj->getId();?>' class='btn btn-primary btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>

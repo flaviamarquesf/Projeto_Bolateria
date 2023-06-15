@@ -44,7 +44,7 @@ if(isset($_GET['id'])){
                                 <span class="section-heading-upper">Cadastro</span>
                                 <span class="section-heading-lower">Seja bem vindo!</span>
                             </h2>
-                            <form method="post" action="../control/cliente.php">
+                            <form method="post" action="../control/clienteRecanto.php">
                                 <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                 <div class="list-unstyled list-hours mb-5 text-left mx-auto">
                                     <input type="text" id="nome" name="nome" placeholder="Nome completo" value="<?php echo ($objCliente==NULL?"":$objCliente->getNome());?>" class="list-unstyled-item list-hours-item d-flex">
