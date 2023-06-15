@@ -8,5 +8,13 @@
         $lista = UsuarioPermissaoDAO::getInstance()->listWhere($sql,$arrayDeParametros,$arrayDeValores);
         return sizeof($lista)>0;
       }
+      static function PegarPermissõesUsuario($idUsuario){
+        require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioPermissaoDAO.php';
+        $sql = "where idUsuario =:idUsuario";
+        $arrayDeParametros = array(":idUsuario");
+        $arrayDeValores = array($idUsuario);
+        $lista = UsuarioPermissaoDAO::getInstance()->listWhere($sql,$arrayDeParametros,$arrayDeValores);
+        return $lista;
+      }
  }
 ?>

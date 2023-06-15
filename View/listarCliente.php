@@ -132,7 +132,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                                             <div class="modal-body">Tem certeza que deseja deletar?</div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                                <a class="btn btn-danger" href="../control/usuarioDeletar.php?id=<?php echo $obj->getId();?>">Deletar</a>
+                                                                <a class="btn btn-danger" href="../control/clienteDeletar.php?id=<?php echo $obj->getId();?>">Deletar</a>
                                                             </div>
                                                         </div>
                                                     </div>

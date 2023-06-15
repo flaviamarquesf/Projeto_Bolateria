@@ -1,3 +1,19 @@
+<?php
+session_start();
+if(!isset($_SESSION['idClienteLogado'])){
+    header("Location: login.php");
+}
+else{
+    
+    //buscar da base o cara com o id do get
+    //e salvar na variavel $objCliente;
+    //Para usar o DAO eu preciso importar ele
+ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.php';
+ //usar o meu getByid da classe usuario dao e armazenar o restorno
+ //na variável $objCliente
+$objCliente=ClienteDAO::getInstance()->getById($_SESSION['idClienteLogado']);
+}
+?>
 <!DOCTYPE php>
 <html lang="en">
     <head>
@@ -16,7 +32,7 @@
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-                <span class="site-heading-upper text-primary mb-3">Seja bem vindo (nome) ao</span>
+                <span class="site-heading-upper text-primary mb-3">Seja bem vindo <?php echo $objCliente->getNome(); ?> ao</span>
                 <span class="site-heading-lower">Recanto Doce</span>
             </h1>
         </header>

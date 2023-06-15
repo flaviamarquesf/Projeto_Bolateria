@@ -114,6 +114,19 @@ if(isset($_GET['id'])){
                                                             <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
                                                             </div>
                                                         </div>
+                                                        <fieldset>
+                                                            <legenda>Permissões:
+                                                                <?php 
+                                                                 $lista = UsuarioPermissaoBO::PegarPermissõesUsuario($_SESSION['idUsuarioLogado']);
+                                                                 foreach($lista as $usuarioPermissao){
+                                                                     echo "<input type= 'checkbox' name='permissao[]' id='up".$usuarioPermissao->getIdPermissao()."'/>";
+                                                                     echo "<label for= 'up".$usuarioPermissao->getIdPermissao()."'>";
+                                                                     echo $usuarioPermissao->getPermissao()->getNome();
+                                                                     echo "</label>";
+                                                                 }
+                                                                ?>
+                                                            </legenda>
+                                                        </fieldset>
                                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                                     </form>
                                                     <hr>

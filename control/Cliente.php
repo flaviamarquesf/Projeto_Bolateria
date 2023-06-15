@@ -22,5 +22,5 @@ if($obj->getId() !=0)
     ClienteDAO::getInstance()->update($obj);
 else
     ClienteDAO::getInstance()->insert($obj);
-header('location: ../recantoDoce/index.php');
+    header('location: ../View/listarCliente.php');
 ?>

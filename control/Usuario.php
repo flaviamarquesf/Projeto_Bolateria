@@ -12,10 +12,19 @@ $obj = new Usuario();
 $obj->setNome($_POST['nome']);
 $obj->setEmail($_POST['email']);
 $obj->setSenha(md5($_POST['senha']));
+print_r($_POST);
 $obj->setId($_POST['id']);
 if($obj->getId() !=0)
     UsuarioDAO::getInstance()->update($obj);
-else
-    UsuarioDAO::getInstance()->insert($obj);
-header('location: ../View/listarUsuario.php');
+else{
+    //$idUsuarioSalvo = UsuarioDAO::getInstance()->insert($obj);
+    foreach($_POST['permissao'] as $idPermissao){
+        $usuarioPermissao = new UsuarioPermissao();
+        $usuarioPermissao->setIdPermissao($idPermissao);
+        $usuarioPermissao->setIdCliente($idUsuarioSalvo);
+
+        UsuarioPermissaoDAO::getInstance()->insert($obj);
+    }
+}
+//header('location: ../View/listarUsuario.php');
 ?>

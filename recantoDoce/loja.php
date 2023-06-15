@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['idClienteLogado'])){
+    header("Location: login.php");
+}
+?>
 <!DOCTYPE php>
 <html lang="en">
     <head>
