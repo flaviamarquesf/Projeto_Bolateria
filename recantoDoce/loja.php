@@ -22,8 +22,8 @@ if(!isset($_SESSION['idClienteLogado'])){
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-                <span class="site-heading-upper text-primary mb-3">A Free Bootstrap Business Theme</span>
-                <span class="site-heading-lower">Business Casual</span>
+                <span class="site-heading-upper text-primary mb-3">Ainda não veio ao recanto doce?</span>
+                <span class="site-heading-lower">Visite-nos</span>
             </h1>
         </header>
         <!-- Navigation-->
@@ -38,50 +38,50 @@ if(!isset($_SESSION['idClienteLogado'])){
                     <div class="col-xl-9 mx-auto">
                         <div class="cta-inner bg-faded text-center rounded">
                             <h2 class="section-heading mb-5">
-                                <span class="section-heading-upper">Come On In</span>
-                                <span class="section-heading-lower">We're Open</span>
+                                <span class="section-heading-upper">Entre</span>
+                                <span class="section-heading-lower">Estamos abertos</span>
                             </h2>
                             <ul class="list-unstyled list-hours mb-5 text-left mx-auto">
                                 <li class="list-unstyled-item list-hours-item d-flex">
-                                    Sunday
-                                    <span class="ms-auto">Closed</span>
+                                    Domingo
+                                    <span class="ms-auto">Fechado</span>
                                 </li>
                                 <li class="list-unstyled-item list-hours-item d-flex">
-                                    Monday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
+                                    Segunda-Feira
+                                    <span class="ms-auto">7:00 AM às 8:00 PM</span>
                                 </li>
                                 <li class="list-unstyled-item list-hours-item d-flex">
-                                    Tuesday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
+                                    Terça-Feira
+                                    <span class="ms-auto">7:00 AM às 8:00 PM</span>
                                 </li>
                                 <li class="list-unstyled-item list-hours-item d-flex">
-                                    Wednesday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
+                                    Quarta-Feira
+                                    <span class="ms-auto">7:00 AM às 8:00 PM</span>
                                 </li>
                                 <li class="list-unstyled-item list-hours-item d-flex">
-                                    Thursday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
+                                    Quinta-Feira
+                                    <span class="ms-auto">7:00 AM às 8:00 PM</span>
                                 </li>
                                 <li class="list-unstyled-item list-hours-item d-flex">
-                                    Friday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
+                                    Sexta-Feira
+                                    <span class="ms-auto">7:00 AM às 8:00 PM</span>
                                 </li>
                                 <li class="list-unstyled-item list-hours-item d-flex">
-                                    Saturday
-                                    <span class="ms-auto">9:00 AM to 5:00 PM</span>
+                                    Sábado
+                                    <span class="ms-auto">9:00 AM às 5:00 PM</span>
                                 </li>
                             </ul>
                             <p class="address mb-5">
                                 <em>
-                                    <strong>1116 Orchard Street</strong>
+                                    <strong>Rua José da Silva, 45</strong>
                                     <br />
-                                    Golden Valley, Minnesota
+                                    Centro, Iguaraci
                                 </em>
                             </p>
                             <p class="mb-0">
-                                <small><em>Call Anytime</em></small>
+                                <small><em>Ligue a qualquer hora</em></small>
                                 <br />
-                                (317) 585-8468
+                                (87) 98177-5544
                             </p>
                         </div>
                     </div>

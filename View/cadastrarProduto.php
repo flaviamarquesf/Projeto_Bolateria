@@ -100,9 +100,12 @@ if(isset($_GET['id'])){
                                                         <h1 class="h4 text-gray-900 mb-4">Crie Produto</h1>
                                                     </div>
                                                     <form action="../control/produto.php"  method="POST">
-                                                    <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
-                                                    <div class="form-group">
+                                                        <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
+                                                        <div class="form-group">
                                                         <input type="text" id="nome" name="nome" placeholder="Nome do produto" value="<?php echo ($objProduto==NULL?"":$objProduto->getNome());?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <input type="text" id="link" name="link" placeholder="URL: https://www.youtube.com/embed/FAY1K2aUg5g" value="<?php echo ($objProduto==NULL?"":$objProduto->getLink());?>">
                                                         </div>
                                                         <div class="form-group">
                                                         <input type="number" id="precokg" name="precokg" placeholder="Preço/kg" step="0.010" value="<?php echo ($objProduto==NULL?"":$objProduto->getPrecokg());?>">

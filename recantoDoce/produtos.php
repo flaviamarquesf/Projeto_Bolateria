@@ -22,8 +22,8 @@ if(!isset($_SESSION['idClienteLogado'])){
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-                <span class="site-heading-upper text-primary mb-3">A Free Bootstrap Business Theme</span>
-                <span class="site-heading-lower">Business Casual</span>
+                <span class="site-heading-upper text-primary mb-3">É meu, é seu, é</span>
+                <span class="site-heading-lower">Nosso doce</span>
             </h1>
         </header>
         <!-- Navigation-->
@@ -33,23 +33,39 @@ if(!isset($_SESSION['idClienteLogado'])){
             ?>
         </nav>
         <section class="page-section">
-            <div class="container">
-                <div class="product-item">
-                    <div class="product-item-title d-flex">
-                        <div class="bg-faded p-5 d-flex ms-auto rounded">
+
+                 <div class="container">
+                <div class="product-item">                    
+                    <div class="product-item-title d-flex">                  
+                        <div class="bg-faded p-5 d-flex me-auto rounded">
                             <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper">Blended to Perfection</span>
-                                <span class="section-heading-lower">Coffees & Teas</span>
+                                <span class="section-heading-upper">Venha olhar nosso</span>
+                                <span class="section-heading-lower">Cardápio</span>
                             </h2>
                         </div>
                     </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="assets/img/products-01.jpg" alt="..." />
-                    <div class="product-item-description d-flex me-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">We take pride in our work, and it shows. Every time you order a beverage from us, we guarantee that it will be an experience worth having. Whether it's our world famous Venezuelan Cappuccino, a refreshing iced herbal tea, or something as simple as a cup of speciality sourced black coffee, you will be coming back for more.</p></div>
-                    </div>
+                    <hr><hr><hr>
+                    <?php
+                        require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
+                        $lista = ProdutoDAO::getInstance()->listAll();
+                        foreach ($lista as $obj){
+                            echo '<div class="product-item-title d-flex">
+                                    <div class="bg-faded p-5 d-flex ms-auto rounded">
+                                        <h2 class="section-heading mb-0">
+                                            <span class="section-heading-lower">'.$obj->getNome().'</span>
+                                        </h2>
+                                    </div>
+                                   </div>';
+                            echo '<img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="'
+                            .$obj->getLink(). '"alt="..." />';
+                            echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Preço/kg: R$'
+                            .$obj->getPrecokg().'</p></div></div>'; 
+                            echo '<hr>';
+                    }?>
                 </div>
             </div>
         </section>
+<!--                SESSÕES PARA SE QUISER USAR FORMATAÇÃO DELAS
         <section class="page-section">
             <div class="container">
                 <div class="product-item">
@@ -86,6 +102,7 @@ if(!isset($_SESSION['idClienteLogado'])){
                 </div>
             </div>
         </section>
+-->
         <?php
             include_once('menuBaixo.php');
         ?>

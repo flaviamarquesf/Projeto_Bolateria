@@ -20,10 +20,11 @@ class ProdutoDAO{
     }
     public function insert (Produto $produto){
         try {
-            $sql = "INSERT INTO produto (nome,precokg) VALUES (:nome,:precokg)"; 
+            $sql = "INSERT INTO produto (nome,link,precokg) VALUES (:nome,:link,:precokg)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":nome", $produto->getNome());
+            $p_sql->bindValue(":link", $produto->getLink());
             $p_sql->bindValue(":precokg", $produto->getPrecokg());
             return $p_sql->execute();
             } catch (Exception $e) {
@@ -32,10 +33,11 @@ class ProdutoDAO{
     }
     public function update ($produto){
         try {
-            $sql = "UPDATE produto SET nome=:nome,precokg=:precokg WHERE id=:id"; 
+            $sql = "UPDATE produto SET nome=:nome,link=:link,precokg=:precokg WHERE id=:id"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":nome", $produto->getNome());
+            $p_sql->bindValue(":link", $produto->getLink());
             $p_sql->bindValue(":precokg", $produto->getPrecokg());
             $p_sql->bindValue(":id", $produto->getId());
             return $p_sql->execute();
@@ -72,6 +74,7 @@ class ProdutoDAO{
         $obj = new Produto;
         $obj->setId($row['id']);
         $obj->setNome($row['nome']);
+        $obj->setLink($row['link']);
         $obj->setPrecokg($row['precokg']);
         return $obj;
     }

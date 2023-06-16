@@ -10,6 +10,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/Produto.php'
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
 $obj = new Produto();
 $obj->setNome($_POST['nome']);
+$obj->setLink($_POST['link']);
 $obj->setPrecokg($_POST['precokg']);
 $obj->setId($_POST['id']);
 if($obj->getId() !=0)
