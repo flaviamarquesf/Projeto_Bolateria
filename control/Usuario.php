@@ -7,7 +7,9 @@
 */
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/Usuario.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/UsuarioPermissao.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioPermissaoDAO.php';
 $obj = new Usuario();
 $obj->setNome($_POST['nome']);
 $obj->setEmail($_POST['email']);
@@ -17,13 +19,13 @@ $obj->setId($_POST['id']);
 if($obj->getId() !=0)
     UsuarioDAO::getInstance()->update($obj);
 else{
-    //$idUsuarioSalvo = UsuarioDAO::getInstance()->insert($obj);
+    $idUsuarioSalvo = UsuarioDAO::getInstance()->insert($obj);
     foreach($_POST['permissao'] as $idPermissao){
         $usuarioPermissao = new UsuarioPermissao();
         $usuarioPermissao->setIdPermissao($idPermissao);
         $usuarioPermissao->setIdCliente($idUsuarioSalvo);
 
-        UsuarioPermissaoDAO::getInstance()->insert($obj);
+        UsuarioPermissaoDAO::getInstance()->insert($usuarioPermissao);
     }
 }
 //header('location: ../View/listarUsuario.php');

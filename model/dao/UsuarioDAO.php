@@ -22,12 +22,15 @@ class UsuarioDAO{
         try {
             $sql = "INSERT INTO usuario (nome,email,senha) VALUES (:nome,:email,:senha)"; 
             //perceba que na linha abaixo vai precisar de um import
-            $p_sql = BDPDO::getInstance()->prepare($sql);
+            $pdo = BDPDO::getInstance();
+            $p_sql = $pdo->prepare($sql);
             $p_sql->bindValue(":nome", $usuario->getNome());
             $p_sql->bindValue(":email", $usuario->getEmail());
             //iremos critografar a senha para md5, assim o usuário terá mais segurança, já que frequentemente usamos a mesma senha para diversas aplicações.
             $p_sql->bindValue(":senha", md5($usuario->getSenha()));
-            return $p_sql->execute();
+            $p_sql->execute();
+            return $pdo->lastInsertId();
+
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();
             }

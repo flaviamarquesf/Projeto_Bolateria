@@ -72,6 +72,12 @@ if(!$possuiPermissao){
                             <h6 class="m-0 font-weight-bold text-primary">Usuários</h6>
                         </div>
                         <div class="card-body">
+
+                        o formulário tem que ser enviado para a própria página 
+                            <form action='listarFLuxo.php'>
+                                <input type='date' name='dataInicial'/>
+                            </form>
+
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -93,8 +99,24 @@ if(!$possuiPermissao){
                                     <tbody>
                                         <?php
                                             require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
+                                            $sql;
+                                            $param;
+                                            $valores;
+                                            if(isset($_GET["dataInicial"])  && isset($_GET["final"])){
+                                                $sql = " where dataPagamento>= :dataInicial and dataPagamento<=:dataFinal";
+                                                $param = array(":dataInicial", ":dataFinal");
+                                                $valores = array($_GET["dataInicial"], $_GET["final"]);
+                                            }
+                                            $lista = FluxoFinandeiroDAO::getInstance()->listwhere($sql,$param,$valores);
                                             $lista = UsuarioDAO::getInstance()->listAll();
+                                            $total=0;
                                             foreach ($lista as $obj){
+                                                if($obj->getFluxo()=="Entrada"){
+                                                    $total+=$obj->getValor();
+                                                }
+                                                else if($obj->getFluxo()=="Saida"){
+                                                    $total-=$obj->getValor();
+                                                }
                                                 echo '<tr>';
                                                 echo '<td>'.$obj->getId().'</td>';
                                                 echo '<td>'.$obj->getNome().'</td>';
@@ -112,6 +134,7 @@ if(!$possuiPermissao){
                                                     </span> 
                                                     <span class="text">Deletar</span>
                                                 </a>
+                                            
                                                 <div class="modal fade" id="modal<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -136,6 +159,10 @@ if(!$possuiPermissao){
                                         ?>
                                     </tbody>
                                 </table>
+                                <?php
+                                //imprimindo o total
+                                echo "<h3>Valor total R$ ".$total."</h3>";
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -193,10 +220,7 @@ if(!$possuiPermissao){
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+ 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
