@@ -59,13 +59,14 @@ if(!isset($_SESSION['idClienteLogado'])){
                             echo '<img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="'
                             .$obj->getLink(). '"alt="..." />';
                             echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Preço/kg: R$'
-                            .$obj->getPrecokg().'</p></div></div>'; 
+                            .$obj->getPrecokg().'</p></div></div>';
+                            echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Carrinho</p></div></div>';  
                             echo '<hr>';
                     }?>
                 </div>
             </div>
         </section>
-<!--                SESSÕES PARA SE QUISER USAR FORMATAÇÃO DELAS
+               SESSÕES PARA SE QUISER USAR FORMATAÇÃO DELAS
         <section class="page-section">
             <div class="container">
                 <div class="product-item">
@@ -83,7 +84,7 @@ if(!isset($_SESSION['idClienteLogado'])){
                     </div>
                 </div>
             </div>
-        </section>
+        </section><!-- 
         <section class="page-section">
             <div class="container">
                 <div class="product-item">

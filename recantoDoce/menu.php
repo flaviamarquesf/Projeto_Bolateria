@@ -1,5 +1,6 @@
             <head>
             <link href="css/sb-admin-2.min.css" rel="stylesheet">
+            <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
             </head>
             <div class="container">
                 <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.php">Recanto Doce</a>
@@ -7,9 +8,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.php">Inicio</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="sobre.php">Sobre</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="produtos.php">Produtos</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="loja.php">Loja</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="sobre.php">Carrinho<i class="fas fa-shopping-cart"></i></a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" data-toggle="modal" data-target="#logoutModal" href="sair.php">Sair</a></li>
                         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
@@ -17,8 +18,8 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabel">Sair</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
+                                                                <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">Tem certeza que deseja encerrar sessão?</div>
