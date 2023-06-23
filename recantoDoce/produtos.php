@@ -59,32 +59,53 @@ if(!isset($_SESSION['idClienteLogado'])){
                             echo '<img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="'
                             .$obj->getLink(). '"alt="..." />';
                             echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Preço/kg: R$'
-                            .$obj->getPrecokg().'</p></div></div>';
-                            echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Carrinho</p></div></div>';  
+                            .$obj->getPrecokg().'</p></div>
+                            <div class="bg-faded p-5 rounded">
+                            <p class="mb-0">
+                                <a href= "../control/Compra.php?id='.$obj->getId().'"data-toggle="modal" data-target="#modal'.$obj->getId().'>
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-"></i>
+                                    </span> 
+                                    <span>Comprar</span>
+                                </a></p>
+                            </div>
+                            <div class="bg-faded p-5 rounded">
+                            <p class="mb-0">
+                            <a href= "../control/ItemCompra.php?id='.$obj->getId().'"data-toggle="modal" data-target="#modal'.$obj->getId().'>
+                                    <i class="fas fa-"></i>
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </p></div></div>';
+                            echo '<div class="product-item-description d-flex me-auto"></div>';  
                             echo '<hr>';
-                    }?>
+                            ?>
+                            
+                                            
+                                                <div class="modal fade" id="modal<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Comprar</h5>
+                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">Confirme sua compra</div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                                <a class="btn btn-danger" href="../control/Compra.php?id=<?php echo $obj->getId();?>">Comprar</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                  <?php  }?>
+                   
+                        
                 </div>
             </div>
         </section>
-               SESSÕES PARA SE QUISER USAR FORMATAÇÃO DELAS
-        <section class="page-section">
-            <div class="container">
-                <div class="product-item">
-                    <div class="product-item-title d-flex">
-                        <div class="bg-faded p-5 d-flex me-auto rounded">
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper">Delicious Treats, Good Eats</span>
-                                <span class="section-heading-lower">Bakery & Kitchen</span>
-                            </h2>
-                        </div>
-                    </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="assets/img/products-02.jpg" alt="..." />
-                    <div class="product-item-description d-flex ms-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">Our seasonal menu features delicious snacks, baked goods, and even full meals perfect for breakfast or lunchtime. We source our ingredients from local, oragnic farms whenever possible, alongside premium vendors for specialty goods.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- 
+               <!-- 
         <section class="page-section">
             <div class="container">
                 <div class="product-item">
@@ -107,5 +128,21 @@ if(!isset($_SESSION['idClienteLogado'])){
         <?php
             include_once('menuBaixo.php');
         ?>
+                    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
     </body>
 </html>

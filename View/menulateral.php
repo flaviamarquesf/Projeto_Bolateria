@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
@@ -22,9 +22,6 @@
 <hr class="sidebar-divider">
 
 <!-- Heading -->
-<div class="sidebar-heading">
-    Interface
-</div>
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFluxo"
         aria-expanded="true" aria-controls="collapseUtilities">
@@ -37,11 +34,11 @@
             <h6 class="collapse-header">tipos:</h6>
             <?php 
                require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
-              if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Cliente")){
-                  echo "<a class='collapse-item' href='cadastrarCliente.php'>cadastrar</a>";
+              if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Fluxo")){
+                  echo "<a class='collapse-item' href='cadastrarFluxo.php'>Cadastrar</a>";
               }
-              if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Cliente")){
-                echo "<a class='collapse-item' href='listarCliente.php'>listar</a>";
+              if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Fluxo")){
+                echo "<a class='collapse-item' href='listarFluxo.php'>Listar</a>";
             }
             ?>
            

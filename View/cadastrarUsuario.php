@@ -102,16 +102,16 @@ if(isset($_GET['id'])){
                                                         <h1 class="h4 text-gray-900 mb-4">Crie sua conta!</h1>
                                                     </div>
                                                     <form action="../control/usuario.php"  method="Post">
-                                                        <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
+                                                        <input class="input-claro" type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                                         <div class="form-group">
-                                                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>">
+                                                        <input class="input-claro" type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>">
                                                         </div>
                                                         <div class="form-group">
-                                                        <input type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>">
+                                                        <input class="input-claro" type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>">
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                                                            <input class="input-claro" type="password" id="senha" name="senha" placeholder="Digite sua senha">
                                                             </div>
                                                         </div>
                                                         <fieldset>
@@ -120,6 +120,7 @@ if(isset($_GET['id'])){
 
                                                                  $lista = UsuarioPermissaoBO::PegarPermissõesUsuario($_SESSION['idUsuarioLogado']);
                                                                  foreach($lista as $usuarioPermissao){
+                                                                     echo " ";
                                                                      echo "<input type= 'checkbox' name='permissao[]' value='".$usuarioPermissao->getIdPermissao()."'id='up".$usuarioPermissao->getIdPermissao()."'/>";
                                                                      echo " ";
                                                                      echo "<label for= 'up".$usuarioPermissao->getIdPermissao()."'>";

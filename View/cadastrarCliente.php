@@ -104,17 +104,17 @@ if(isset($_GET['id'])){
                                                     <form action="../control/cliente.php"  method="POST">
                                                     <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                                         <div class="form-group">
-                                                            <input type="text" id="nome" class="form-control"  name="nome" placeholder="Nome completo:" value="<?php echo ($objCliente==NULL?"":$objCliente->getNome());?>"required>
+                                                            <input class="input-claro" type="text" id="nome" class="form-control"  name="nome" placeholder="Nome completo:" value="<?php echo ($objCliente==NULL?"":$objCliente->getNome());?>"required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail:" value="<?php echo ($objCliente==NULL?"":$objCliente->getEmail());?>"required>
+                                                            <input class="input-claro" type="email" id="email" name="email" class="form-control" placeholder="E-mail:" value="<?php echo ($objCliente==NULL?"":$objCliente->getEmail());?>"required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="text" id="tel" name="telefone" minlength="11" maxlength="15" class="form-control" placeholder="Telefone:" value="<?php echo ($objCliente==NULL?"":$objCliente->getTelefone());?>"required>
+                                                            <input class="input-claro" type="text" id="tel" name="telefone" minlength="11" maxlength="15" class="form-control" placeholder="Telefone:" value="<?php echo ($objCliente==NULL?"":$objCliente->getTelefone());?>"required>
                                                         </div>
                                                         <div class='endereco'><hr>
                                                             <div class="form-group">
-                                                            <select id="uf" name="uf" value="<?php echo ($objCliente==NULL?"":$objCliente->getUf());?>"required>
+                                                            <select class="input-claro" id="uf" name="uf" value="<?php echo ($objCliente==NULL?"":$objCliente->getUf());?>"required>
                                                                 <?php 
                                                                 if($objCliente==NULL){
 
@@ -135,18 +135,18 @@ if(isset($_GET['id'])){
                                                             
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo ($objCliente==NULL?"":$objCliente->getCidade());?>"required>
+                                                                <input class="input-claro" type="text" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo ($objCliente==NULL?"":$objCliente->getCidade());?>"required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo ($objCliente==NULL?"":$objCliente->getBairro());?>"required>
+                                                                <input class="input-claro" type="text" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo ($objCliente==NULL?"":$objCliente->getBairro());?>"required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="number" id="numero" name="numero" placeholder="numero" value="<?php echo ($objCliente==NULL?"":$objCliente->getNumero());?>"required>
+                                                                <input class="input-claro" type="number" id="numero" name="numero" placeholder="numero" value="<?php echo ($objCliente==NULL?"":$objCliente->getNumero());?>"required>
                                                             </div>
                                                             <hr>
                                                         </div>
                                                         <div class="form-group">
-                                                                <input type="password" minlength="8" class="form-control" id="senha" name="senha" placeholder="Senha:"required>
+                                                                <input class="input-claro" type="password" minlength="8" class="form-control" id="senha" name="senha" placeholder="Senha:"required>
                                                             </div>
                                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                                     </form>

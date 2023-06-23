@@ -23,7 +23,7 @@ class ItemCompraDAO{
             $sql = "INSERT INTO itemcompra (idProduto,idCompra) VALUES (:idProduto,:idCompra)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
-            $p_sql->bindValue(":idProdtuo", $itemcompra->getIdProdtuo());
+            $p_sql->bindValue(":idProduto", $itemcompra->getIdProduto());
             $p_sql->bindValue(":idCompra", $itemcompra->getIdCompra());
             return $p_sql->execute();
             } catch (Exception $e) {

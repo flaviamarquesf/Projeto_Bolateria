@@ -25,7 +25,7 @@
   --gray: #858796;
   --gray-dark: #5a5c69;
   --primary: #4e73df;
-  --secondary: #858796;
+  --secondary: #1f1204;
   --success: #1cc88a;
   --info: #36b9cc;
   --warning: #f6c23e;
@@ -6421,7 +6421,7 @@ button.bg-primary:focus {
 }
 
 .bg-secondary {
-  background-color: #858796 !important;
+  background-color: #1f1204 !important;
 }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
@@ -9906,8 +9906,8 @@ a:focus {
 }
 
 .bg-gradient-secondary {
-  background-color: #858796;
-  background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
+  background-color: #1f1204;
+  background-image: linear-gradient(180deg, #1f1204 10%, #60616f 100%);
   background-size: cover;
 }
 

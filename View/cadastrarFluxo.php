@@ -4,20 +4,20 @@ if(!isset($_SESSION['idUsuarioLogado'])){
     header("Location: login.php");
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
-$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Produto");
+$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Usuário");
 if(!$possuiPermissao){
-    header("location: naoPermissao.php?permissao=ListarProduto");
+    header("location: naoPermissao.php?permissao=CadastrarUsuario");
 }
 //se estiver setado é pq é pra atualizar
-$objProduto=NULL;
+$objUsuario=NULL;
 if(isset($_GET['id'])){
        //buscar da base o cara com o id do get
        //e salvar na variavel $objUsuario;
        //Para usar o DAO eu preciso importar ele
-    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
     //usar o meu getByid da classe usuario dao e armazenar o restorno
     //na variável $objUsuario
-   $objProduto=ProdutoDAO::getInstance()->getById($_GET['id']);
+   $objUsuario=UsuarioDAO::getInstance()->getById($_GET['id']);
 }
 
 ?>
@@ -36,7 +36,7 @@ if(isset($_GET['id'])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cadastrar Produtos</title>
+    <title>Cadastrar Usuários</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -93,25 +93,48 @@ if(isset($_GET['id'])){
                                     <div class="card-body p-0">
                                         <!-- Nested Row within Card Body -->
                                         <div class="row">
-                                            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                                            <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                                               
+                                            </div>
                                             <div class="col-lg-7">
                                                 <div class="p-5">
                                                     <div class="text-center">
-                                                        <h1 class="h4 text-gray-900 mb-4">Crie Produto</h1>
+                                                        <h1 class="h4 text-gray-900 mb-4">Crie sua conta!</h1>
                                                     </div>
-                                                    <form action="../control/produto.php"  method="POST">
+                                                    <form action="../control/usuario.php"  method="Post">
                                                         <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                                         <div class="form-group">
-                                                        <input class="input-claro"  type="text" id="nome" name="nome" placeholder="Nome do produto" value="<?php echo ($objProduto==NULL?"":$objProduto->getNome());?>">
+                                                        <input class="input-claro" type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>">
                                                         </div>
                                                         <div class="form-group">
-                                                        <input class="input-claro"  type="text" id="link" name="link" placeholder="URL: https://www.youtube.com/embed/FAY1K2aUg5g" value="<?php echo ($objProduto==NULL?"":$objProduto->getLink());?>">
+                                                        <input class="input-claro" type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>">
                                                         </div>
-                                                        <div class="form-group">
-                                                        <input class="input-claro"  type="number" id="precokg" name="precokg" placeholder="Preço/kg" step="0.010" value="<?php echo ($objProduto==NULL?"":$objProduto->getPrecokg());?>">
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                            <input class="input-claro" type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                                                            </div>
                                                         </div>
+                                                        <fieldset>
+                                                            <legenda>Permissões:
+                                                                <?php 
+
+                                                                 $lista = UsuarioPermissaoBO::PegarPermissõesUsuario($_SESSION['idUsuarioLogado']);
+                                                                 foreach($lista as $usuarioPermissao){
+                                                                     echo "<input class='input-claro' type= 'checkbox' name='permissao[]' value='".$usuarioPermissao->getIdPermissao()."'id='up".$usuarioPermissao->getIdPermissao()."'/>";
+                                                                     echo " ";
+                                                                     echo "<label for= 'up".$usuarioPermissao->getIdPermissao()."'>";
+                                                                     echo $usuarioPermissao->getPermissao()->getNome();
+                                                                     echo "</label>";
+                                                                 }
+                                                                ?>
+                                                            </legenda>
+                                                        </fieldset>
                                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                                     </form>
+                                                    <hr>
+                                                    <div class="text-center">
+                                                        <a class="small" href="login.php">Already have an account? Login!</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
