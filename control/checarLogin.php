@@ -10,9 +10,9 @@ if(count($lista)>0){
     session_start();
     $_SESSION['idUsuarioLogado']=$lista[0]->getId();
    header("Location: ../View/index.php");
-    echo "login feito com sucesso";
+    //echo "login feito com sucesso";
 }else{
   header("Location: ../View/login.php?erroNoLogin=true");
-    echo "senha errada";
+    //echo "senha errada";
 }
 ?>

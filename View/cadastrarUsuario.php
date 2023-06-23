@@ -117,9 +117,11 @@ if(isset($_GET['id'])){
                                                         <fieldset>
                                                             <legenda>Permissões:
                                                                 <?php 
+
                                                                  $lista = UsuarioPermissaoBO::PegarPermissõesUsuario($_SESSION['idUsuarioLogado']);
                                                                  foreach($lista as $usuarioPermissao){
-                                                                     echo "<input type= 'checkbox' name='permissao[]' id='up".$usuarioPermissao->getIdPermissao()."'/>";
+                                                                     echo "<input type= 'checkbox' name='permissao[]' value='".$usuarioPermissao->getIdPermissao()."'id='up".$usuarioPermissao->getIdPermissao()."'/>";
+                                                                     echo " ";
                                                                      echo "<label for= 'up".$usuarioPermissao->getIdPermissao()."'>";
                                                                      echo $usuarioPermissao->getPermissao()->getNome();
                                                                      echo "</label>";

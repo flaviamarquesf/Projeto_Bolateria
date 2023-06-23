@@ -1,3 +1,11 @@
+<?php
+    //buscar da base o cara com o id do get
+    //e salvar na variavel $objCliente;
+    //Para usar o DAO eu preciso importar ele
+ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
+ //usar o meu getByid da classe usuario dao e armazenar o restorno
+ //na variável $objCliente
+$objUsuario=UsuarioDAO::getInstance()->getById($_SESSION['idUsuarioLogado']); ?>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -171,7 +179,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Jonas Rei dos Teclados</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $objUsuario->getNome(); ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>

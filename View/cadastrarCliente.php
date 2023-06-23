@@ -104,31 +104,49 @@ if(isset($_GET['id'])){
                                                     <form action="../control/cliente.php"  method="POST">
                                                     <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                                         <div class="form-group">
-                                                            <input type="text" id="nome" class="form-control"  name="nome" placeholder="Nome completo:" value="<?php echo ($objCliente==NULL?"":$objCliente->getNome());?>">
+                                                            <input type="text" id="nome" class="form-control"  name="nome" placeholder="Nome completo:" value="<?php echo ($objCliente==NULL?"":$objCliente->getNome());?>"required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail:" value="<?php echo ($objCliente==NULL?"":$objCliente->getEmail());?>">
+                                                            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail:" value="<?php echo ($objCliente==NULL?"":$objCliente->getEmail());?>"required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="text" id="tel" name="telefone" class="form-control" placeholder="Telefone:" value="<?php echo ($objCliente==NULL?"":$objCliente->getTelefone());?>">
+                                                            <input type="text" id="tel" name="telefone" minlength="11" maxlength="15" class="form-control" placeholder="Telefone:" value="<?php echo ($objCliente==NULL?"":$objCliente->getTelefone());?>"required>
                                                         </div>
                                                         <div class='endereco'><hr>
                                                             <div class="form-group">
-                                                                <input type="text" id="uf" name="uf" placeholder="UF" value="<?php echo ($objCliente==NULL?"":$objCliente->getUf());?>">
+                                                            <select id="uf" name="uf" value="<?php echo ($objCliente==NULL?"":$objCliente->getUf());?>"required>
+                                                                <?php 
+                                                                if($objCliente==NULL){
+
+                                                                }else{?>
+                                                                    <option value="<?php echo $objCliente->getUf();?>"><?php echo $objCliente->getUf();?></option>
+                                                                    <?php }
+                                                                ?>
+                                                                <option value="Pernambuco">Pernambuco</option>
+                                                                <option value="Maranhão">Maranhão</option>
+                                                                <option value="Piauí">Piauí</option>
+                                                                <option value="Ceará">Ceará</option>
+                                                                <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                                                                <option value="Paraíba">Paraíba</option>
+                                                                <option value="Sergipe">Sergipe</option>
+                                                                <option value="Alagoas">Alagoas</option>  
+                                                                <option value="Bahia">Bahia</option>                                                           
+                                                            </select>
+                                                            
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo ($objCliente==NULL?"":$objCliente->getCidade());?>">
+                                                                <input type="text" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo ($objCliente==NULL?"":$objCliente->getCidade());?>"required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo ($objCliente==NULL?"":$objCliente->getBairro());?>">
+                                                                <input type="text" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo ($objCliente==NULL?"":$objCliente->getBairro());?>"required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="number" id="numero" name="numero" placeholder="numero" value="<?php echo ($objCliente==NULL?"":$objCliente->getNumero());?>">
+                                                                <input type="number" id="numero" name="numero" placeholder="numero" value="<?php echo ($objCliente==NULL?"":$objCliente->getNumero());?>"required>
                                                             </div>
                                                             <hr>
                                                         </div>
                                                         <div class="form-group">
-                                                                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha:">
+                                                                <input type="password" minlength="8" class="form-control" id="senha" name="senha" placeholder="Senha:"required>
                                                             </div>
                                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                                     </form>

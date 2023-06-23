@@ -14,8 +14,8 @@
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
     <a class="nav-link" href="index.php">
-    <i class="fas fa-piggy-bank"></i>
-        <span>Fluxo financeiro</span></a>
+    <i class="fas fa-home"></i>
+        <span>Inicio</span></a>
 </li>
 
 <!-- Divider -->
@@ -104,10 +104,10 @@
             <?php 
                require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
               if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Cliente")){
-                  echo "<a class='collapse-item' href='cadastrarCliente.php'>cadastrar</a>";
+                  echo "<a class='collapse-item' href='cadastrarCliente.php'>Cadastrar</a>";
               }
               if (UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Cliente")){
-                echo "<a class='collapse-item' href='listarCliente.php'>listar</a>";
+                echo "<a class='collapse-item' href='listarCliente.php'>Listar</a>";
             }
             ?>
            

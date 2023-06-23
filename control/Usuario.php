@@ -23,10 +23,10 @@ else{
     foreach($_POST['permissao'] as $idPermissao){
         $usuarioPermissao = new UsuarioPermissao();
         $usuarioPermissao->setIdPermissao($idPermissao);
-        $usuarioPermissao->setIdCliente($idUsuarioSalvo);
+        $usuarioPermissao->setIdUsuario($idUsuarioSalvo);
 
         UsuarioPermissaoDAO::getInstance()->insert($usuarioPermissao);
     }
 }
-//header('location: ../View/listarUsuario.php');
+header('location: ../View/listarUsuario.php');
 ?>
