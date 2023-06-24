@@ -16,7 +16,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Listar Clientes</title>
+    <title>Listar Fluxo</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -59,61 +59,72 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Listar Clientes</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Listar Fluxo</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Fluxo</h6>
                         </div>
                         <div class="card-body">
+                        <form action='listarFLuxo.php'>
+                                <input type='date' name='dataInicial'/>
+                            </form>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Nome</th>
-                                            <th>email</th>
-                                            <th>UF</th>
-                                            <th>Cidade</th>
-                                            <th>Bairro</th>
-                                            <th>Numero</th>
-                                            <th>ações</th>
+                                            <th>Fluxo</th>
+                                            <th>Valor</th>
+                                            <th>Data de Pagamento</th>
+                                            <th>Tipo</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Nome</th>
-                                            <th>email</th>
-                                            <th>UF</th>
-                                            <th>Cidade</th>
-                                            <th>Bairro</th>
-                                            <th>Numero</th>
-                                            <th>ações</th>
+                                            <th>Fluxo</th>
+                                            <th>Valor</th>
+                                            <th>Data de Pagamento</th>
+                                            <th>Tipo</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php
-                                            require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.php';
-                                            $lista = ClienteDAO::getInstance()->listAll();
+                                            require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/FluxoFinanceiroDAO.php';
+                                            $sql;
+                                            $param;
+                                            $valores;
+                                            if(isset($_GET["dataInicial"])  && isset($_GET["final"])){
+                                                $sql = " where dataPagamento>= :dataInicial and dataPagamento<=:dataFinal";
+                                                $param = array(":dataInicial", ":dataFinal");
+                                                $valores = array($_GET["dataInicial"], $_GET["final"]);
+                                            }
+                                            $lista = FluxoFinanceiroDAO::getInstance()->listWhere($sql,$param,$valores);
+                                            $lista = FluxoFinanceiroDAO::getInstance()->listAll();
+                                            $total=0;
                                             foreach ($lista as $obj){
+                                                if($obj->getFluxo()=="Entrada"){
+                                                    $total+=$obj->getValor();
+                                                }
+                                                else if($obj->getFluxo()=="Saida"){
+                                                    $total-=$obj->getValor();
+                                                }
                                                 echo '<tr>';
                                                 echo '<td>'.$obj->getId().'</td>';
-                                                echo '<td>'.$obj->getNome().'</td>';
-                                                echo '<td>'.$obj->getEmail().'</td>';
-                                                echo '<td>'.$obj->getUf().'</td>';
-                                                echo '<td>'.$obj->getCidade().'</td>';
-                                                echo '<td>'.$obj->getBairro().'</td>';
-                                                echo '<td>'.$obj->getNumero().'</td>';
+                                                echo '<td>'.$obj->getFluxo().'</td>';
+                                                echo '<td>'.$obj->getvalor().'</td>';
+                                                echo '<td>'.$obj->getDataPagamento().'</td>';
+                                                echo '<td>'.$obj->getTipo().'</td>';
                                                 echo '<td>'; ?>
-                                                <a href='cadastrarCliente.php?id=<?php echo $obj->getId();?>' class='btn btn-primary btn-icon-split btn-sm'>
+                                                <a href='cadastrarFluxo.php?id=<?php echo $obj->getId();?>' class='btn btn-primary btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-pen'></i>
                                                     </span>
                                                     <span class="text">Editar</span>
                                                 </a>
-                                                <a href= '../control/clienteDeletar.php?id=<?php echo $obj->getId();?>'data-toggle='modal' data-target="#modal<?php echo $obj->getId();?>" class='btn btn-danger btn-icon-split btn-sm'>
+                                                <a href= '../control/FluxoDeletar.php?id=<?php echo $obj->getId();?>'data-toggle='modal' data-target="#modal<?php echo $obj->getId();?>" class='btn btn-danger btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-trash'></i>
                                                     </span> 
@@ -132,7 +143,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                                             <div class="modal-body">Tem certeza que deseja deletar?</div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                                <a class="btn btn-danger" href="../control/clienteDeletar.php?id=<?php echo $obj->getId();?>">Deletar</a>
+                                                                <a class="btn btn-danger" href="../control/FluxoDeletar.php?id=<?php echo $obj->getId();?>">Deletar</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -143,6 +154,10 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                         ?>
                                     </tbody>
                                 </table>
+                                <?php
+                                //imprimindo o total
+                                echo "<h3>Valor total R$ ".$total."</h3>";
+                                ?>
                             </div>
                         </div>
                     </div>
