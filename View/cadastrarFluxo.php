@@ -4,20 +4,20 @@ if(!isset($_SESSION['idUsuarioLogado'])){
     header("Location: login.php");
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
-$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Usuário");
+$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Fluxo");
 if(!$possuiPermissao){
-    header("location: naoPermissao.php?permissao=CadastrarUsuario");
+    header("location: naoPermissao.php?permissao=CadastrarFluxo");
 }
 //se estiver setado é pq é pra atualizar
-$objUsuario=NULL;
+$objFluxo=NULL;
 if(isset($_GET['id'])){
        //buscar da base o cara com o id do get
-       //e salvar na variavel $objUsuario;
+       //e salvar na variavel $objFluxo;
        //Para usar o DAO eu preciso importar ele
-    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/UsuarioDAO.php';
-    //usar o meu getByid da classe usuario dao e armazenar o restorno
-    //na variável $objUsuario
-   $objUsuario=UsuarioDAO::getInstance()->getById($_GET['id']);
+    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/FluxoFinanceiroDAO.php';
+    //usar o meu getByid da classe Fluxo dao e armazenar o restorno
+    //na variável $objFluxo
+   $objFluxoFinanceiro=FluxoFinanceiroDAO::getInstance()->getById($_GET['id']);
 }
 
 ?>
@@ -101,34 +101,45 @@ if(isset($_GET['id'])){
                                                     <div class="text-center">
                                                         <h1 class="h4 text-gray-900 mb-4">Crie sua conta!</h1>
                                                     </div>
-                                                    <form action="../control/usuario.php"  method="Post">
+                                                    <form action="../control/FluxoFinanceiro.php"  method="Post">
                                                         <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                                         <div class="form-group">
-                                                        <input class="input-claro" type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>">
+                                                        <select class="input-claro" id="tipo" name="tipo" value="<?php echo ($objFluxoFinanceiro==NULL?"":$objFluxoFinanceiro->getTipo());?>"required>
+                                                                <?php 
+                                                                if($objFluxoFinanceiro==NULL){
+
+                                                                }else{?>
+                                                                    <option value="<?php echo $objFluxoFinanceiro->getTipo();?>"><?php echo $objFluxoFinanceiro->getTipo();?></option>
+                                                                    <?php }
+                                                                ?>
+                                                                <option value="Entrada">Entrada</option>
+                                                                <option value="Saida">Saída</option>                                                    
+                                                        </select>
                                                         </div>
                                                         <div class="form-group">
-                                                        <input class="input-claro" type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>">
+                                                        <select class="input-claro" id="fluxo" name="fluxo" value="<?php echo ($objFluxoFinanceiro==NULL?"":$objFluxoFinanceiro->getFluxo());?>"required>
+                                                                <?php 
+                                                                if($objFluxoFinanceiro==NULL){
+
+                                                                }else{?>
+                                                                    <option value="<?php echo $objFluxoFinanceiro->getFluxo();?>"><?php echo $objFluxoFinanceiro->getFluxo();?></option>
+                                                                    <?php }
+                                                                ?>
+                                                                <option value="Banco do Brasil">Banco do Brasil</option>
+                                                                <option value="Caixa">Caixa</option>                                                    
+                                                        </select>
                                                         </div>
+                                                        <div class="form-group">
+                                                        <input class="input-claro" step="0.010" type="number" id="valor" name="valor" placeholder="R$250,00" value="<?php echo ($objFluxoFinanceiro==NULL?"":$objFluxoFinanceiro->getValor());?>">
+                                                        </div>
+
                                                         <div class="form-group row">
                                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <input class="input-claro" type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                                                                <label for="dataPagamento">Data de Pagamento: </label>
+                                                            <input class="input-claro" type="date" id="dataPagamento" name="dataPagamento"value="<?php echo ($objFluxoFinanceiro==NULL?"":$objFluxoFinanceiro->getDataPagamento());?>">
                                                             </div>
                                                         </div>
-                                                        <fieldset>
-                                                            <legenda>Permissões:
-                                                                <?php 
-
-                                                                 $lista = UsuarioPermissaoBO::PegarPermissõesUsuario($_SESSION['idUsuarioLogado']);
-                                                                 foreach($lista as $usuarioPermissao){
-                                                                     echo "<input class='input-claro' type= 'checkbox' name='permissao[]' value='".$usuarioPermissao->getIdPermissao()."'id='up".$usuarioPermissao->getIdPermissao()."'/>";
-                                                                     echo " ";
-                                                                     echo "<label for= 'up".$usuarioPermissao->getIdPermissao()."'>";
-                                                                     echo $usuarioPermissao->getPermissao()->getNome();
-                                                                     echo "</label>";
-                                                                 }
-                                                                ?>
-                                                            </legenda>
-                                                        </fieldset>
+                                                        
                                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                                     </form>
                                                     <hr>

@@ -13,7 +13,9 @@ $obj->setValor($_POST['valor']);
 $obj->setDataPagamento($_POST['dataPagamento']);
 $obj->setFluxo($_POST['fluxo']);
 $obj->setTipo($_POST['tipo']);
-
-
-FluxoFinanceiro::getInstance()->insert($obj);
+if($obj->getId() !=0)
+    FluxoFinanceiroDAO::getInstance()->update($obj);
+else
+    FluxoFinanceiroDAO::getInstance()->insert($obj);
+    header('location: ../View/listarFluxo.php');
 ?>

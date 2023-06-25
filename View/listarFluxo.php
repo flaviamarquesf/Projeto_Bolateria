@@ -67,9 +67,15 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                             <h6 class="m-0 font-weight-bold text-primary">Fluxo</h6>
                         </div>
                         <div class="card-body">
-                        <form action='listarFLuxo.php'>
-                                <input type='date' name='dataInicial'/>
-                            </form>
+                        <form action='listarFLuxo.php' METHOD='GET'>
+                            <label for="dataInicial">Inicial: </label>
+                                <input type='date' id='dataInicial' name='dataInicial'/>
+                            <label for="dataFinal">Final: </label>
+                                <input type='date'  id='dataFinal' name='dataFinal'/>
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                        </form>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -79,6 +85,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                             <th>Valor</th>
                                             <th>Data de Pagamento</th>
                                             <th>Tipo</th>
+                                            <th>ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -88,20 +95,21 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                             <th>Valor</th>
                                             <th>Data de Pagamento</th>
                                             <th>Tipo</th>
+                                            <th>ações</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php
                                             require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/FluxoFinanceiroDAO.php';
-                                            $sql;
-                                            $param;
-                                            $valores;
-                                            if(isset($_GET["dataInicial"])  && isset($_GET["final"])){
-                                                $sql = " where dataPagamento>= :dataInicial and dataPagamento<=:dataFinal";
-                                                $param = array(":dataInicial", ":dataFinal");
-                                                $valores = array($_GET["dataInicial"], $_GET["final"]);
+                                            $sql=NULL;
+                                            $arrayDeParam=array();;
+                                            $arrayDeVal=array();;
+                                            if(isset($_GET['dataInicial'])  && isset($_GET['dataFinal'])){
+                                                $sql = " SELECT * FROM dataPagamento>= :dataInicial and dataPagamento<= :dataFinal";
+                                                $arrayDeParam = array(":dataInicial", ":dataFinal");
+                                                $arrayDeVal = array($_GET["dataInicial"], $_GET["dataFinal"]);
                                             }
-                                            $lista = FluxoFinanceiroDAO::getInstance()->listWhere($sql,$param,$valores);
+                                            $lista = FluxoFinanceiroDAO::getInstance()->listWhere($sql,$arrayDeParam,$arrayDeVal);
                                             $lista = FluxoFinanceiroDAO::getInstance()->listAll();
                                             $total=0;
                                             foreach ($lista as $obj){
