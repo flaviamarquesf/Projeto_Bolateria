@@ -4,7 +4,7 @@ class Produto{
     private $id;
     private $nome;
     private $link;
-    private $precokg;
+    private $preco;
     function getId(){
         return $this->id;
     }
@@ -23,11 +23,11 @@ class Produto{
     function setLink($link){
         $this->link=$link;
     }
-    function getPrecokg(){
-        return $this->precokg;
+    function getPreco(){
+        return $this->preco;
     }
-    function setPrecokg($precokg){
-        $this->precokg=$precokg;
+    function setPreco($preco){
+        $this->preco=$preco;
     }
 }
 ?>

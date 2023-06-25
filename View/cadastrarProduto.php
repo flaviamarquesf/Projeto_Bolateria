@@ -108,7 +108,7 @@ if(isset($_GET['id'])){
                                                         <input class="input-claro"  type="text" id="link" name="link" placeholder="URL: https://www.youtube.com/embed/FAY1K2aUg5g" value="<?php echo ($objProduto==NULL?"":$objProduto->getLink());?>">
                                                         </div>
                                                         <div class="form-group">
-                                                        <input class="input-claro"  type="number" id="precokg" name="precokg" placeholder="Preço/kg" step="0.010" value="<?php echo ($objProduto==NULL?"":$objProduto->getPrecokg());?>">
+                                                        <input class="input-claro"  type="number" id="precokg" name="precokg" placeholder="Preço" step="0.010" value="<?php echo ($objProduto==NULL?"":$objProduto->getPreco());?>">
                                                         </div>
                                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                                     </form>

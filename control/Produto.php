@@ -11,7 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.
 $obj = new Produto();
 $obj->setNome($_POST['nome']);
 $obj->setLink($_POST['link']);
-$obj->setPrecokg($_POST['precokg']);
+$obj->setPreco($_POST['preco']);
 $obj->setId($_POST['id']);
 if($obj->getId() !=0)
     ProdutoDAO::getInstance()->update($obj);

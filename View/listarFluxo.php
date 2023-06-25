@@ -27,6 +27,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -76,6 +77,18 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                         </form>
+                         <!-- Grafico de barras -->
+                         <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Margem de lucro</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="myBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -162,10 +175,23 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                         ?>
                                     </tbody>
                                 </table>
-                                <?php
-                                //imprimindo o total
-                                echo "<h3>Valor total R$ ".$total."</h3>";
-                                ?>
+                                <!-- imprimindo o total -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Disponivel em caixa</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total; ?></div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -229,6 +255,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/chart-bar-demo.js"></script>
 
 </body>
 

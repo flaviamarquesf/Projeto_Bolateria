@@ -77,7 +77,7 @@ if(!$possuiPermissao){
                                         <tr>
                                             <th>Id</th>
                                             <th>Nome</th>
-                                            <th>Preço/kg</th>
+                                            <th>Preço</th>
                                             <th>ações</th>
                                         </tr>
                                     </thead>
@@ -85,7 +85,7 @@ if(!$possuiPermissao){
                                         <tr>
                                             <th>Id</th>
                                             <th>Nome</th>
-                                            <th>Preço/kg</th>
+                                            <th>Preço</th>
                                             <th>ações</th>
                                         </tr>
                                     </tfoot>
@@ -97,7 +97,7 @@ if(!$possuiPermissao){
                                                 echo '<tr>';
                                                 echo '<td>'.$obj->getId().'</td>';
                                                 echo '<td>'.$obj->getNome().'</td>';
-                                                echo '<td>'.$obj->getPrecokg().'</td>';
+                                                echo '<td>'.$obj->getPreco().'</td>';
                                                 echo '<td>'; ?>
                                                 <a href='cadastrarProduto.php?id=<?php echo $obj->getId();?>' class='btn btn-primary btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>

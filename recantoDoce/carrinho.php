@@ -3,6 +3,12 @@ session_start();
 if(!isset($_SESSION['idClienteLogado'])){
     header("Location: login.php");
 }
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/CompraDAO.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ItemCompraDAO.php';
+$nome = $_POST['nome_produto'];
+$quantidade = $_POST['quantidade'];
+$valorUnitario = $_POST['preco_produto'];
+$valorTotal = $_POST['valorTotal'];
 ?>
 <!DOCTYPE php>
 <html lang="en">
@@ -22,8 +28,8 @@ if(!isset($_SESSION['idClienteLogado'])){
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-                <span class="site-heading-upper text-primary mb-3">A Free Bootstrap Business Theme</span>
-                <span class="site-heading-lower">Business Casual</span>
+                <span class="site-heading-upper text-primary mb-3">Sua lista de produtos</span>
+                <span class="site-heading-lower">não sei uma frase legal p pôr aqui</span>
             </h1>
         </header>
         <!-- Navigation-->
@@ -40,15 +46,17 @@ if(!isset($_SESSION['idClienteLogado'])){
                         <div class="col-xl-9 col-lg-10 mx-auto">
                             <div class="bg-faded rounded p-5">
                                 <h2 class="section-heading mb-4">
-                                    <span class="section-heading-upper">Strong Coffee, Strong Roots</span>
-                                    <span class="section-heading-lower">About Our Cafe</span>
+                                    <span class="section-heading-upper">Seus produtos</span>
+                                    <span class="section-heading-lower">Deguste sem moderação</span>
                                 </h2>
-                                <p>Founded in 1987 by the Hernandez brothers, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of South and Central America. We are dedicated to travelling the world, finding the best coffee, and bringing back to you here in our cafe.</p>
-                                <p class="mb-0">
-                                    We guarantee that you will fall in
-                                    <em>lust</em>
-                                    with our decadent blends the moment you walk inside until you finish your last sip. Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.
-                                </p>
+                                <ul class="list-unstyled list-hours mb-5 text-left mx-auto">
+
+                                <li class="list-unstyled-item list-hours-item d-flex">
+                                    <?php echo $nome; ?>
+                                    <span class="ms-auto"><?php echo $valorTotal; ?></span>
+                                </li>
+                            </ul>
+                            
                             </div>
                         </div>
                     </div>

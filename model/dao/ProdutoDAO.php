@@ -20,12 +20,12 @@ class ProdutoDAO{
     }
     public function insert (Produto $produto){
         try {
-            $sql = "INSERT INTO produto (nome,link,precokg) VALUES (:nome,:link,:precokg)"; 
+            $sql = "INSERT INTO produto (nome,link,preco) VALUES (:nome,:link,:preco)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":nome", $produto->getNome());
             $p_sql->bindValue(":link", $produto->getLink());
-            $p_sql->bindValue(":precokg", $produto->getPrecokg());
+            $p_sql->bindValue(":preco", $produto->getPreco());
             return $p_sql->execute();
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();
@@ -33,12 +33,12 @@ class ProdutoDAO{
     }
     public function update ($produto){
         try {
-            $sql = "UPDATE produto SET nome=:nome,link=:link,precokg=:precokg WHERE id=:id"; 
+            $sql = "UPDATE produto SET nome=:nome,link=:link,preco=:preco WHERE id=:id"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":nome", $produto->getNome());
             $p_sql->bindValue(":link", $produto->getLink());
-            $p_sql->bindValue(":precokg", $produto->getPrecokg());
+            $p_sql->bindValue(":preco", $produto->getPreco());
             $p_sql->bindValue(":id", $produto->getId());
             return $p_sql->execute();
             } catch (Exception $e) {
@@ -75,7 +75,7 @@ class ProdutoDAO{
         $obj->setId($row['id']);
         $obj->setNome($row['nome']);
         $obj->setLink($row['link']);
-        $obj->setPrecokg($row['precokg']);
+        $obj->setPreco($row['preco']);
         return $obj;
     }
     public function listAll (){

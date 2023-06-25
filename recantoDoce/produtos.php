@@ -58,22 +58,13 @@ if(!isset($_SESSION['idClienteLogado'])){
                                    </div>';
                             echo '<img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="'
                             .$obj->getLink(). '"alt="..." />';
-                            echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Preço/kg: R$'
-                            .$obj->getPrecokg().'</p></div>
+                            echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Preço: R$'
+                            .$obj->getPreco().'</p></div>
                             <div class="bg-faded p-5 rounded">
                             <p class="mb-0">
-                                <a href= "../control/Compra.php?id='.$obj->getId().'"data-toggle="modal" data-target="#modal'.$obj->getId().'>
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-"></i>
-                                    </span> 
-                                    <span>Comprar</span>
-                                </a></p>
-                            </div>
-                            <div class="bg-faded p-5 rounded">
-                            <p class="mb-0">
-                            <a href= "../control/ItemCompra.php?id='.$obj->getId().'"data-toggle="modal" data-target="#modal'.$obj->getId().'>
+                                <a href= "carrinho.php" data-toggle="modal" data-target="#modal'.$obj->getId().'">
                                     <i class="fas fa-"></i>
-                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class="fas fa-shopping-cart"></i>oi
                                 </a>
                             </p></div></div>';
                             echo '<div class="product-item-description d-flex me-auto"></div>';  
@@ -81,7 +72,7 @@ if(!isset($_SESSION['idClienteLogado'])){
                             ?>
                             
                                             
-                                                <div class="modal fade" id="modal<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                               <div class="modal fade" id="modal<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -91,10 +82,16 @@ if(!isset($_SESSION['idClienteLogado'])){
                                                                     <span aria-hidden="true">×</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">Confirme sua compra</div>
+                                                            <div class="modal-body">Adicionar ao carrinho</div>
+                                                            <form action="carrinho.php" method="POST">
+                                                                <input type="text" name="nome_produto" value="<?php echo $obj->getName();?>" readonly>
+                                                                <input type="text" name="preço_produto" value="<?php echo $obj->getPreco();?> por unidade" readonly>
+                                                                Quantidade: <input type="number" id="quantidade" name="quantidade" oninput="calcularValorTotal()" min="1" max="10" step="1">
+                                                                <input type="text" id="valorTotal" readonly>
+                                                                <input class="btn btn-danger" type="submit" value="Adicionar ao carrinho">
+                                                            </form>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                                <a class="btn btn-danger" href="../control/Compra.php?id=<?php echo $obj->getId();?>">Comprar</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -128,6 +125,15 @@ if(!isset($_SESSION['idClienteLogado'])){
         <?php
             include_once('menuBaixo.php');
         ?>
+    <!-- funcao de calcular preço -->
+    <script>
+        function calcularValorTotal() {
+        var quantidade = parseInt(document.getElementById("quantidade").value);
+        var valorUnitario = parseFloat(document.getElementById("valorUnitario").value);
+        var valorTotal = quantidade * valorUnitario;
+        document.getElementById("valorTotal").value = valorTotal.toFixed(2);
+        }
+    </script>
                     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
