@@ -9,7 +9,7 @@ if(!$possuiPermissao){
     header("location: naoPermissao.php?permissao=CadastrarFluxo");
 }
 //se estiver setado é pq é pra atualizar
-$objFluxo=NULL;
+$objFluxoFinanceiro=NULL;
 if(isset($_GET['id'])){
        //buscar da base o cara com o id do get
        //e salvar na variavel $objFluxo;
@@ -106,14 +106,22 @@ if(isset($_GET['id'])){
                                                         <div class="form-group">
                                                         <select class="input-claro" id="fluxo" name="fluxo" value="<?php echo ($objFluxoFinanceiro==NULL?"":$objFluxoFinanceiro->getFluxo());?>"required>
                                                                 <?php 
-                                                                if($objFluxoFinanceiro==NULL){
-
-                                                                }else{?>
+                                                                if($objFluxoFinanceiro==NULL){?>
+                                                                <option value="Entrada">Entrada</option>
+                                                                <option value="Saida">Saída</option> 
+                                                         <?php       }else{?>
                                                                     <option value="<?php echo $objFluxoFinanceiro->getFluxo();?>"><?php echo $objFluxoFinanceiro->getFluxo();?></option>
+                                                                    <?Php 
+                                                                    if($objFluxoFinanceiro->getFluxo()=="Entrada"){
+                                                                        ?><option value="Saida">Saída</option><?php
+                                                                    }
+                                                                    else if($objFluxoFinanceiro->getFluxo()=="Saida"){
+                                                                        ?><option value="Entrada">Entrada</option><?php
+                                                                    }
+                                                                    ?>
                                                                     <?php }
                                                                 ?>
-                                                                <option value="Entrada">Entrada</option>
-                                                                <option value="Saida">Saída</option>                                                    
+                                                                                                                   
                                                         </select>
                                                         </div>
                                                         <div class="form-group">

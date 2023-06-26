@@ -26,7 +26,7 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFluxo"
         aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-piggy-bank"></i>
-        <span>Fluxo financeiro</span>
+        <span>Fluxo Financeiro</span>
     </a>
     <div id="collapseFluxo" class="collapse" aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar">

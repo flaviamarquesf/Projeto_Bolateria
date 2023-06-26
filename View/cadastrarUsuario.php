@@ -104,28 +104,29 @@ if(isset($_GET['id'])){
                                                     <form action="../control/usuario.php"  method="Post">
                                                         <input class="input-claro" type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                                         <div class="form-group">
-                                                        <input class="input-claro" type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>">
+                                                        <input class="input-claro" type="text" id="nome" name="nome" placeholder="Digite seu nome" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getNome());?>" required>
                                                         </div>
                                                         <div class="form-group">
-                                                        <input class="input-claro" type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>">
+                                                        <input class="input-claro" type="email" id="email" name="email" placeholder="Digite seu email" value="<?php echo ($objUsuario==NULL?"":$objUsuario->getEmail());?>" required>
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <input class="input-claro" type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                                                            <input class="input-claro" type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
                                                             </div>
                                                         </div>
                                                         <fieldset>
                                                             <legenda>Permissões:
+                                                                <br>
                                                                 <?php 
 
                                                                  $lista = UsuarioPermissaoBO::PegarPermissõesUsuario($_SESSION['idUsuarioLogado']);
                                                                  foreach($lista as $usuarioPermissao){
-                                                                     echo " ";
-                                                                     echo "<input type= 'checkbox' name='permissao[]' value='".$usuarioPermissao->getIdPermissao()."'id='up".$usuarioPermissao->getIdPermissao()."'/>";
-                                                                     echo " ";
-                                                                     echo "<label for= 'up".$usuarioPermissao->getIdPermissao()."'>";
-                                                                     echo $usuarioPermissao->getPermissao()->getNome();
-                                                                     echo "</label>";
+                                                                    echo "<label for= 'up".$usuarioPermissao->getIdPermissao()."'>";
+                                                                    echo $usuarioPermissao->getPermissao()->getNome();
+                                                                    echo " ";
+                                                                    echo "<input type= 'checkbox' name='permissao[]' value='".$usuarioPermissao->getIdPermissao()."'id='up".$usuarioPermissao->getIdPermissao()."'/>";
+                                                                    echo " ";
+                                                                    echo "</label>";
                                                                  }
                                                                 ?>
                                                             </legenda>

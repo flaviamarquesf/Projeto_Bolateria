@@ -4,9 +4,9 @@ if(!isset($_SESSION['idUsuarioLogado'])){
     header("Location: login.php");
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
-$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar Produto");
+$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Produto");
 if(!$possuiPermissao){
-    header("location: naoPermissao.php?permissao=ListarProduto");
+    header("location: naoPermissao.php?permissao=CadastrarProduto");
 }
 //se estiver setado é pq é pra atualizar
 $objProduto=NULL;

@@ -22,13 +22,15 @@ class FluxoFinanceiroDAO{
         try {
             $sql = "INSERT INTO fluxoFinanceiro (fluxo,dataPagamento,tipo,valor) VALUES (:fluxo,:dataPagamento,:tipo,:valor)"; 
             //perceba que na linha abaixo vai precisar de um import
-            $p_sql = BDPDO::getInstance()->prepare($sql);
+            $pdo = BDPDO::getInstance();
+            $p_sql = $pdo->prepare($sql);
             $p_sql->bindValue(":fluxo", $fluxoFinanceiro->getFluxo());
             $p_sql->bindValue(":dataPagamento", $fluxoFinanceiro->getDataPagamento());
             //iremos critografar a senha para md5, assim o usuário terá mais segurança, já que frequentemente usamos a mesma senha para diversas aplicações.
             $p_sql->bindValue(":tipo", $fluxoFinanceiro->getTipo());
             $p_sql->bindValue(":valor", $fluxoFinanceiro->getValor());
-            return $p_sql->execute();
+            $p_sql->execute();
+            return $pdo->lastInsertId();
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();
             }
