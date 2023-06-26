@@ -4,7 +4,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
     header("Location: login.php");
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/UsuarioPermissaoBO.php';
-$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Listar fluxo");
+$possuiPermissao = UsuarioPermissaoBO::usuarioPossuiPermissao($_SESSION['idUsuarioLogado'], "Cadastrar Fluxo");
 if(!$possuiPermissao){
     header("location: naoPermissao.php?permissao=ListarFluxo");
 }

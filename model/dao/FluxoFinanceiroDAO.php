@@ -26,7 +26,6 @@ class FluxoFinanceiroDAO{
             $p_sql = $pdo->prepare($sql);
             $p_sql->bindValue(":fluxo", $fluxoFinanceiro->getFluxo());
             $p_sql->bindValue(":dataPagamento", $fluxoFinanceiro->getDataPagamento());
-            //iremos critografar a senha para md5, assim o usuário terá mais segurança, já que frequentemente usamos a mesma senha para diversas aplicações.
             $p_sql->bindValue(":tipo", $fluxoFinanceiro->getTipo());
             $p_sql->bindValue(":valor", $fluxoFinanceiro->getValor());
             $p_sql->execute();
