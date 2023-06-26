@@ -22,6 +22,8 @@ $objCliente=ClienteDAO::getInstance()->getById($_SESSION['idClienteLogado']);
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Recanto Doce - Inicio</title>
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />

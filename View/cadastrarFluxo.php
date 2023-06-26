@@ -104,19 +104,6 @@ if(isset($_GET['id'])){
                                                     <form action="../control/FluxoFinanceiro.php"  method="Post">
                                                         <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                                         <div class="form-group">
-                                                        <select class="input-claro" id="tipo" name="tipo" value="<?php echo ($objFluxoFinanceiro==NULL?"":$objFluxoFinanceiro->getTipo());?>"required>
-                                                                <?php 
-                                                                if($objFluxoFinanceiro==NULL){
-
-                                                                }else{?>
-                                                                    <option value="<?php echo $objFluxoFinanceiro->getTipo();?>"><?php echo $objFluxoFinanceiro->getTipo();?></option>
-                                                                    <?php }
-                                                                ?>
-                                                                <option value="Entrada">Entrada</option>
-                                                                <option value="Saida">Saída</option>                                                    
-                                                        </select>
-                                                        </div>
-                                                        <div class="form-group">
                                                         <select class="input-claro" id="fluxo" name="fluxo" value="<?php echo ($objFluxoFinanceiro==NULL?"":$objFluxoFinanceiro->getFluxo());?>"required>
                                                                 <?php 
                                                                 if($objFluxoFinanceiro==NULL){
@@ -125,8 +112,21 @@ if(isset($_GET['id'])){
                                                                     <option value="<?php echo $objFluxoFinanceiro->getFluxo();?>"><?php echo $objFluxoFinanceiro->getFluxo();?></option>
                                                                     <?php }
                                                                 ?>
-                                                                <option value="Banco do Brasil">Banco do Brasil</option>
-                                                                <option value="Caixa">Caixa</option>                                                    
+                                                                <option value="Entrada">Entrada</option>
+                                                                <option value="Saida">Saída</option>                                                    
+                                                        </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <select class="input-claro" id="tipo" name="tipo" value="<?php echo ($objFluxoFinanceiro==NULL?"":$objFluxoFinanceiro->getTipo());?>"required>
+                                                                <?php 
+                                                                if($objFluxoFinanceiro==NULL){
+
+                                                                }else{?>
+                                                                    <option value="<?php echo $objFluxoFinanceiro->getTipo();?>"><?php echo $objFluxoFinanceiro->getTipo();?></option>
+                                                                    <?php }
+                                                                ?>
+                                                                <option value="Credito">Crédito</option>
+                                                                <option value="Debito">Débito</option>                                                    
                                                         </select>
                                                         </div>
                                                         <div class="form-group">

@@ -12,6 +12,8 @@ if(!isset($_SESSION['idClienteLogado'])){
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Recanto Doce - Produtos</title>
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
@@ -62,8 +64,12 @@ if(!isset($_SESSION['idClienteLogado'])){
                             .$obj->getPreco().'</p></div>
                             <div class="bg-faded p-5 rounded">
                             <p class="mb-0">
-                                <a href= "carrinho.php" data-toggle="modal" data-target="#modal'.$obj->getId().'">
-                                    <i class="fas fa-"></i>
+                                <a href= "compra.php" data-toggle="modal" data-target="#comprar'.$obj->getId().'">
+                                    Comprar 
+                                </a>
+                                -
+                                <a href= "carrinho.php" data-toggle="modal" data-target="#carrinho'.$obj->getId().'">
+                                    <i class="fas fa-"></i>Adicionar
                                     <i class="fas fa-shopping-cart"></i>oi
                                 </a>
                             </p></div></div>';
@@ -72,14 +78,14 @@ if(!isset($_SESSION['idClienteLogado'])){
                             ?>
                             
                                             
-                                               <div class="modal fade" id="modal<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                               <div class="modal fade" id="carrinho<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabel">Comprar</h5>
                                                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
+                                                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">Adicionar ao carrinho</div>
@@ -96,6 +102,33 @@ if(!isset($_SESSION['idClienteLogado'])){
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <!-- MODAL PARA COMPRA SEPARADO -->
+                                                <!--
+                                                <div class="modal fade" id="comprar<?php //echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Comprar</h5>
+                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">Comprar</div>
+                                                            <form action="compra.php" method="POST">
+                                                                <input type="text" name="nome_produto" value="<?php //echo $obj->getName();?>" readonly>
+                                                                <input type="text" name="preço_produto" value="<?php //echo $obj->getPreco();?> por unidade" readonly>
+                                                                Quantidade: <input type="number" id="quantidade" name="quantidade" oninput="calcularValorTotal()" min="1" max="10" step="1">
+                                                                <input type="text" id="valorTotal" readonly>
+                                                                <input class="btn btn-danger" type="submit" value="Comprar Agora!">
+                                                            </form>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        -->
                   <?php  }?>
                    
                         

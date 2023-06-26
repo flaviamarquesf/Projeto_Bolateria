@@ -73,9 +73,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
                                 <input type='date' id='dataInicial' name='dataInicial'/>
                             <label for="dataFinal">Final: </label>
                                 <input type='date'  id='dataFinal' name='dataFinal'/>
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                                
                         </form>
                          <!-- Grafico de barras -->
                          <div class="card shadow mb-4">
