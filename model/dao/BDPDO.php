@@ -12,5 +12,5 @@ class BDPDO {
     return self::$instance;
     }
     }
-    echo "oi";
+    //echo "oi";
 ?>

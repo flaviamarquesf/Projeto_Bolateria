@@ -61,100 +61,51 @@ if(!isset($_SESSION['idClienteLogado'])){
                             echo '<img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="'
                             .$obj->getLink(). '"alt="..." />';
                             echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Preço: R$'
-                            .$obj->getPreco().'</p></div>
-                            <div class="bg-faded p-5 rounded">
-                            <p class="mb-0">
-                                <a href= "compra.php" data-toggle="modal" data-target="#comprar'.$obj->getId().'">
-                                    Comprar 
-                                </a>
-                                -
-                                <a href= "carrinho.php" data-toggle="modal" data-target="#carrinho'.$obj->getId().'">
-                                    <i class="fas fa-"></i>Adicionar
-                                    <i class="fas fa-shopping-cart"></i>oi
-                                </a>
-                            </p></div></div>';
+                            .$obj->getPreco().' <i class="fas fa-arrow-right"></i>
+                            <a href= "carrinho.php?id='.$obj->getId().'" data-toggle="modal" data-target="#carrinho'.$obj->getId().'">
+                                <i class="fas fa-"></i>Adicionar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a></p></div></div>';
                             echo '<div class="product-item-description d-flex me-auto"></div>';  
                             echo '<hr>';
                             ?>
                             
-                                            
-                                               <div class="modal fade" id="carrinho<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Comprar</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">Adicionar ao carrinho</div>
-                                                            <form action="carrinho.php" method="POST">
-                                                                <input type="text" name="nome_produto" value="<?php echo $obj->getName();?>" readonly>
-                                                                <input type="text" name="preço_produto" value="<?php echo $obj->getPreco();?> por unidade" readonly>
-                                                                Quantidade: <input type="number" id="quantidade" name="quantidade" oninput="calcularValorTotal()" min="1" max="10" step="1">
-                                                                <input type="text" id="valorTotal" readonly>
-                                                                <input class="btn btn-danger" type="submit" value="Adicionar ao carrinho">
-                                                            </form>
-                                                            <div class="modal-footer">
-                                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- MODAL PARA COMPRA SEPARADO -->
-                                                <!--
-                                                <div class="modal fade" id="comprar<?php //echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Comprar</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">Comprar</div>
-                                                            <form action="compra.php" method="POST">
-                                                                <input type="text" name="nome_produto" value="<?php //echo $obj->getName();?>" readonly>
-                                                                <input type="text" name="preço_produto" value="<?php //echo $obj->getPreco();?> por unidade" readonly>
-                                                                Quantidade: <input type="number" id="quantidade" name="quantidade" oninput="calcularValorTotal()" min="1" max="10" step="1">
-                                                                <input type="text" id="valorTotal" readonly>
-                                                                <input class="btn btn-danger" type="submit" value="Comprar Agora!">
-                                                            </form>
-                                                            <div class="modal-footer">
-                                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                        -->
+                            <div class="modal fade" id="carrinho<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Faça aqui seu pedido!</h5>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h6><?php echo $obj->getNome();?></h6>
+                    <h6>Preço por Unidade: R$<?php echo $obj->getPreco();?></h6>
+                    <form action="produtos.php" method="POST">
+                        <h6>Quantidade: <input type="number" id="quantidade" name="quantidade" oninput="calcularValorTotal()" min="1" max="10" step="1"></h6>
+                    </form>
+                    <?php //$total= "<script>document.write(quantidade)</script>" * $obj->getPreco();
+                    ?>
+                    <h6>Total: <?php $total = "<script>document.write(valorTotal)</script>"; echo $total;?></h6>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Comprar Agora!</button>
+                    <a class="btn btn-primary" href="login.html">Adicionar <i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+                                               
+                                                
                   <?php  }?>
                    
                         
                 </div>
             </div>
         </section>
-               <!-- 
-        <section class="page-section">
-            <div class="container">
-                <div class="product-item">
-                    <div class="product-item-title d-flex">
-                        <div class="bg-faded p-5 d-flex ms-auto rounded">
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper">From Around the World</span>
-                                <span class="section-heading-lower">Bulk Speciality Blends</span>
-                            </h2>
-                        </div>
-                    </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="assets/img/products-03.jpg" alt="..." />
-                    <div class="product-item-description d-flex me-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">Travelling the world for the very best quality coffee is something take pride in. When you visit us, you'll always find new blends from around the world, mainly from regions in Central and South America. We sell our blends in smaller to large bulk quantities. Please visit us in person for more details.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
--->
+
         <?php
             include_once('menuBaixo.php');
         ?>
@@ -162,7 +113,7 @@ if(!isset($_SESSION['idClienteLogado'])){
     <script>
         function calcularValorTotal() {
         var quantidade = parseInt(document.getElementById("quantidade").value);
-        var valorUnitario = parseFloat(document.getElementById("valorUnitario").value);
+        var valorUnitario = "<?php echo $obj->getPreco(); ?>"
         var valorTotal = quantidade * valorUnitario;
         document.getElementById("valorTotal").value = valorTotal.toFixed(2);
         }
