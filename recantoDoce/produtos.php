@@ -3,6 +3,16 @@ session_start();
 if(!isset($_SESSION['idClienteLogado'])){
     header("Location: login.php");
 }
+$objCliente=NULL;
+if(isset($_GET['id'])){
+       //buscar da base o cara com o id do get
+       //e salvar na variavel $objUsuario;
+       //Para usar o DAO eu preciso importar ele
+    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.php';
+    //usar o meu getByid da classe usuario dao e armazenar o restorno
+    //na variável $objUsuario
+   $objCliente=ClienteDAO::getInstance()->getById($_SESSION['idClienteLogado']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,44 +91,53 @@ if(!isset($_SESSION['idClienteLogado'])){
                     </button>
                 </div>
                 <div class="modal-body">
-                <table border="1" class="cart-table">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
-                        <th class="table-head-item first-col">Item</th>
-                        <th class="table-head-item second-col">Preço</th>
-                        <th class="table-head-item third-col">Quantidade</th>
+                        <tr width="100%">
+                        <th>Foto</th>
+                        <th>Nome</th>
+                        <th>Quant</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr class="cart-product">
                         <td class="product-identification">
-                            <img width="150" height="100"src="<?php echo $obj->getLink();?>" alt="Miniatura" class="cart-product-image">
-                            <br><strong class="cart-product-title"><?php echo $obj->getNome();?></strong>
+                            <form action="carrinho.php" method="post">
+                                <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
+                                <img name="link" id="link" width="70" height="40"src="<?php echo $obj->getLink();?>" alt="Miniatura" class="cart-product-image">
+                        </td>
+                        <td>
+                            <strong class="cart-product-title"><?php echo $obj->getNome();?></strong>
+                        </td>
+                        <td>
+                            <input style="align:center; width: 50px;" type="number" value="1" min="0" class="product-qtd-input">
                         </td>
                         <td>
                             <span class="cart-product-price">R$<?php echo $obj->getPreco();?></span>
                         </td>
                         <td>
-                            <input type="number" value="2" min="0" class="product-qtd-input">
-                            <button type="button" class="remove-product-button">Remover</button>
+                            <a href= '../control/delProdutoCar.php?id=<?php echo $obj->getId();?>' style="padding-left:15px;">
+                            <button class="btn btn-danger" style="padding-left:10px;" ><i class='fas fa-trash'></i></button>
+                            </a>
                         </td>
                         </tr>
                     </tbody>
-
-                    <tfoot>
-                        <tr>
-                        <td colspan="3" class="cart-total-container">
-                            <strong>Total</strong>
-                            <span>R$0,00</span>
-                        </td>
-                        </tr>
-                    </tfoot>
-                </table>  
+                </table> 
+                <tr>
+                    <td colspan="3" class="cart-total-container">
+                        <strong>Total</strong>
+                        <span>R$0,00</span>    
+                    </td>
+                </tr>
+                </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Comprar Agora!</button>
-                    <a class="btn btn-primary" href="login.html">Adicionar <i class="fas fa-shopping-cart"></i></a>
+                    <button class="btn btn-secondary" type="submit" data-dismiss="modal">Comprar Agora!</button>
+                    <button class="btn btn-primary" type="submit" data-dismiss="modal">Adicionar<i class="fas fa-shopping-cart"></i></button>
                 </div>
             </div>
         </div>
