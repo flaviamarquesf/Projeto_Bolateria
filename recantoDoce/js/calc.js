@@ -24,7 +24,7 @@ if (document.readyState == 'loading') {
     quantityInputs[i].addEventListener("change", checkIfInputIsNull)
   }
   // Botão add produto ao carrinho
-  const addToCartButtons = document.getElementsByClassName("btn btn-secondary")
+  const addToCartButtons = document.getElementsByClassName("btn btn-primary")
   for (var i = 0; i < addToCartButtons.length; i++) {
     addToCartButtons[i].addEventListener("click", addProductToCart)
   }
@@ -47,6 +47,7 @@ if (document.readyState == 'loading') {
         const productPrice = productInfos.getElementsByClassName("product-price")[0].innerText
       
         const productsCartNames = document.getElementsByClassName("cart-product-title")
+        console.log(productsCartNames)
         for (var i = 0; i < productsCartNames.length; i++) {
           if (productsCartNames[i].innerText === productName) {
             productsCartNames[i].parentElement.parentElement.getElementsByClassName("product-qtd-input")[0].value++
