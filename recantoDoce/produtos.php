@@ -25,10 +25,10 @@ if(isset($_GET['id'])){
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- funcao de calcular preço -->
+        <script async src="js/calc.js"></script>
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
@@ -99,6 +99,7 @@ if(isset($_GET['id'])){
                         <th>Nome</th>
                         <th>Quant</th>
                         <th>Preço</th>
+                        <th>Total</th>
                         <th>Ações</th>
                         </tr>
                     </thead>
@@ -114,25 +115,20 @@ if(isset($_GET['id'])){
                             <strong class="cart-product-title"><?php echo $obj->getNome();?></strong>
                         </td>
                         <td>
-                            <input style="align:center; width: 50px;" type="number" value="1" min="0" class="product-qtd-input">
+                            <input style="width: 50px;" type="number" value="0" min="0" class="product-qtd-input">
                         </td>
                         <td>
                             <span class="cart-product-price">R$<?php echo $obj->getPreco();?></span>
                         </td>
+                        <td class="cart-total-container">
+                        <span>R$0,00</span>
+                        </td>
                         <td>
-                            <a href= '../control/delProdutoCar.php?id=<?php echo $obj->getId();?>' style="padding-left:15px;">
-                            <button class="btn btn-danger" style="padding-left:10px;" ><i class='fas fa-trash'></i></button>
-                            </a>
+                            <button style="padding-left:15px;" class="btn btn-danger" name="remove" style="padding-left:10px;" ><i class='fas fa-trash'></i></button>
                         </td>
                         </tr>
                     </tbody>
                 </table> 
-                <tr>
-                    <td colspan="3" class="cart-total-container">
-                        <strong>Total</strong>
-                        <span>R$0,00</span>    
-                    </td>
-                </tr>
                 </div>
                 </div>
                 <div class="modal-footer">
@@ -154,31 +150,7 @@ if(isset($_GET['id'])){
         <?php
             include_once('menuBaixo.php');
         ?>
-    <!-- funcao de calcular preço -->
-    <script src="js/calcular.js"></script>
-    <script>
-        function calcularValorTotal() {
-        var quantidade = parseInt(document.getElementById("quantidade").value);
-        var valorUnitario = "<?php echo $obj->getPreco(); ?>"
-        var valorTotal = quantidade * valorUnitario;
-        document.getElementById("valorTotal").value = valorTotal.toFixed(2);
-        }
-    </script>
                     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
     </body>
 </html>
