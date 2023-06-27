@@ -114,5 +114,6 @@ if(!isset($_SESSION['idClienteLogado'])){
         <?php
             include_once('menuBaixo.php');
         ?>
+        <script src="js/scripts.js"></script>
     </body>
 </html>

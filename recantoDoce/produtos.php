@@ -81,14 +81,40 @@ if(!isset($_SESSION['idClienteLogado'])){
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h6><?php echo $obj->getNome();?></h6>
-                    <h6>Preço por Unidade: R$<?php echo $obj->getPreco();?></h6>
-                    <form action="produtos.php" method="POST">
-                        <h6>Quantidade: <input type="number" id="quantidade" name="quantidade" oninput="calcularValorTotal()" min="1" max="10" step="1"></h6>
-                    </form>
-                    <?php //$total= "<script>document.write(quantidade)</script>" * $obj->getPreco();
-                    ?>
-                    <h6>Total: <?php $total = "<script>document.write(valorTotal)</script>"; echo $total;?></h6>
+                <table border="1" class="cart-table">
+                    <thead>
+                        <tr>
+                        <th class="table-head-item first-col">Item</th>
+                        <th class="table-head-item second-col">Preço</th>
+                        <th class="table-head-item third-col">Quantidade</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="cart-product">
+                        <td class="product-identification">
+                            <img width="150" height="100"src="<?php echo $obj->getLink();?>" alt="Miniatura" class="cart-product-image">
+                            <br><strong class="cart-product-title"><?php echo $obj->getNome();?></strong>
+                        </td>
+                        <td>
+                            <span class="cart-product-price">R$<?php echo $obj->getPreco();?></span>
+                        </td>
+                        <td>
+                            <input type="number" value="2" min="0" class="product-qtd-input">
+                            <button type="button" class="remove-product-button">Remover</button>
+                        </td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                        <td colspan="3" class="cart-total-container">
+                            <strong>Total</strong>
+                            <span>R$0,00</span>
+                        </td>
+                        </tr>
+                    </tfoot>
+                </table>  
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Comprar Agora!</button>
@@ -110,6 +136,7 @@ if(!isset($_SESSION['idClienteLogado'])){
             include_once('menuBaixo.php');
         ?>
     <!-- funcao de calcular preço -->
+    <script src="js/calcular.js"></script>
     <script>
         function calcularValorTotal() {
         var quantidade = parseInt(document.getElementById("quantidade").value);
