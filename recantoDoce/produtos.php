@@ -25,9 +25,9 @@ if(isset($_GET['id'])){
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- funcao de calcular preço -->
+        <!-- funcao de calcular preço 
         <script async src="js/calc.js"></script>
-        <!-- Google fonts-->
+        Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
@@ -72,16 +72,56 @@ if(isset($_GET['id'])){
                             .$obj->getLink(). '"alt="..." />';
                             echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Preço: R$'
                             .$obj->getPreco().' <i class="fas fa-arrow-right"></i>
-                            <a href= "carrinho.php?id='.$obj->getId().'" data-toggle="modal" data-target="#carrinho'.$obj->getId().'">
-                                <i class="fas fa-"></i>Adicionar
+                            <button style="padding-left: 5px;"class="btn btn-secondary">
+                                <i class="fas fa-"></i>
                                 <i class="fas fa-shopping-cart"></i>
-                            </a></p></div></div>';
+                            </button></p></div></div>';
                             echo '<div class="product-item-description d-flex me-auto"></div>';  
                             echo '<hr>';
                             ?>
-                            
-                            <div class="modal fade" id="carrinho<?php echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="product-item-description d-flex ms-auto"><div class="bg-faded p-5 rounded">
+    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr width="100%">
+                        <th>Foto</th>
+                        <th>Nome</th>
+                        <th>Quant</th>
+                        <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cart-product">
+                        <form action="carrinho.php" method="POST">
+                        <td class="product-identification">
+                                <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
+                                <input type='hidden' value="<?php echo $obj->getLink();?>" name = "imagem_produto">
+                                <img name="link" id="link" width="70" height="40"src="<?php echo $obj->getLink();?>" alt="Miniatura" class="cart-product-image">
+                        </td>
+                        <td>
+                            <input type='hidden' value="<?php echo $obj->getNome();?>" name = "nome_produto">
+                            <strong class="cart-product-title"><?php echo $obj->getNome();?></strong>
+                        </td>
+                        <td>
+                            <input style="width: 50px;" name="quantidade" id="quantidade" type="number" value="0" min="0" class="product-qtd-input">
+                        </td>
+                        <td>
+                            <input type='hidden' value="R$<?php echo $obj->getPreco();?>" name = "preco_produto" id="preco_produto">
+                            <span class="cart-product-price">R$<?php echo $obj->getPreco();?></span>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table> 
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="submit">Cancelar</button>
+                    <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#carrinho<?php echo $obj->getId();?>">Adicionar<i class="fas fa-shopping-cart"></i></button>
+                </div>
+                </form>                         
+                </div>
+        </div>
+        <!--
+        <div class="modal fade" id="carrinho<?php //echo $obj->getId();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -91,58 +131,17 @@ if(isset($_GET['id'])){
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr width="100%">
-                        <th>Foto</th>
-                        <th>Nome</th>
-                        <th>Quant</th>
-                        <th>Preço</th>
-                        <th>Total</th>
-                        <th>Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr class="cart-product">
-                        <td class="product-identification">
-                            <form action="carrinho.php" method="post">
-                                <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
-                                <img name="link" id="link" width="70" height="40"src="<?php echo $obj->getLink();?>" alt="Miniatura" class="cart-product-image">
-                        </td>
-                        <td>
-                            <strong class="cart-product-title"><?php echo $obj->getNome();?></strong>
-                        </td>
-                        <td>
-                            <input style="width: 50px;" type="number" value="0" min="0" class="product-qtd-input">
-                        </td>
-                        <td>
-                            <span class="cart-product-price">R$<?php echo $obj->getPreco();?></span>
-                        </td>
-                        <td class="cart-total-container">
-                        <span>R$0,00</span>
-                        </td>
-                        <td>
-                            <button style="padding-left:15px;" class="btn btn-danger" name="remove" style="padding-left:10px;" ><i class='fas fa-trash'></i></button>
-                        </td>
-                        </tr>
-                    </tbody>
-                </table> 
-                </div>
+                    Deseja adicionar ao carrinho?
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="submit" data-dismiss="modal">Comprar Agora!</button>
+                    <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancelar</button>
                     <button class="btn btn-primary" type="submit" data-dismiss="modal">Adicionar<i class="fas fa-shopping-cart"></i></button>
                 </div>
             </div>
         </div>
     </div>
-                                               
-                                                
+--> <br>                       
                   <?php  }?>
-                   
-                        
                 </div>
             </div>
         </section>
@@ -150,6 +149,14 @@ if(isset($_GET['id'])){
         <?php
             include_once('menuBaixo.php');
         ?>
+        <script>
+            function calcularValorTotal() {
+            var quantidade = parseInt(document.getElementById("quantidade").value);
+            var valorUnitario = parseDouble(document.getElementById("preco_produto").value);
+            var valorTotal = quantidade * valorUnitario;
+            document.getElementById("valorTotal").value = valorTotal.toFixed(2);
+            }
+        </script>
                     <!-- Bootstrap core JavaScript-->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>

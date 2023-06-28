@@ -24,10 +24,10 @@ if (document.readyState == 'loading') {
     quantityInputs[i].addEventListener("change", checkIfInputIsNull)
   }
   // Botão add produto ao carrinho
-  const addToCartButtons = document.getElementsByClassName("btn btn-primary")
+  /*const addToCartButtons = document.getElementsByClassName("btn btn-primary")
   for (var i = 0; i < addToCartButtons.length; i++) {
     addToCartButtons[i].addEventListener("click", addProductToCart)
-  }
+  }*/
       function removeProduct(event) {
         event.target.parentElement.parentElement.remove()
         updateTotal()
