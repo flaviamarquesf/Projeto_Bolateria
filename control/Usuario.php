@@ -17,14 +17,7 @@ $obj->setSenha(($_POST['senha']));
 print_r($_POST);
 $obj->setId($_POST['id']);
 if($obj->getId() !=0){
-    $idUsuarioSalvo = UsuarioDAO::getInstance()->update($obj);
-    foreach($_POST['permissao'] as $idPermissao){
-        $usuarioPermissao = new UsuarioPermissao();
-        $usuarioPermissao->setIdPermissao($idPermissao);
-        $usuarioPermissao->setIdUsuario($idUsuarioSalvo);
-
-        UsuarioPermissaoDAO::getInstance()->update($usuarioPermissao);
-    }
+    UsuarioDAO::getInstance()->update($obj);
 }
     else{
     $idUsuarioSalvo = UsuarioDAO::getInstance()->insert($obj);
