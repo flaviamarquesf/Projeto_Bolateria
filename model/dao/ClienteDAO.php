@@ -22,7 +22,8 @@ class ClienteDAO{
         try {
             $sql = "INSERT INTO cliente (nome,telefone,email,senha,bairro,cidade,uf,numero) VALUES (:nome,:telefone,:email,:senha,:bairro,:cidade,:uf,:numero)"; 
             //perceba que na linha abaixo vai precisar de um import
-            $p_sql = BDPDO::getInstance()->prepare($sql);
+            $pdo = BDPDO::getInstance();
+            $p_sql = $pdo->prepare($sql);
             $p_sql->bindValue(":nome", $cliente->getNome());
             $p_sql->bindValue(":telefone", $cliente->getTelefone());
             $p_sql->bindValue(":email", $cliente->getEmail());
@@ -31,7 +32,8 @@ class ClienteDAO{
             $p_sql->bindValue(":cidade", $cliente->getCidade());
             $p_sql->bindValue(":uf", $cliente->getUf());
             $p_sql->bindValue(":numero", $cliente->getNumero());
-            return $p_sql->execute();
+            $p_sql->execute();
+            return $pdo->lastInsertId();
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();
             }

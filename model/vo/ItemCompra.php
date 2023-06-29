@@ -3,6 +3,11 @@ class ItemCompra{
     private $id;
     private $idCompra;
     private $idProduto;
+    //utilizando lazyloading
+    function getProduto(){
+        require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
+        return ProdutoDAO::getInstance()->getById($this->idProduto);
+    }
     function getId(){
         return $this->id;
     }
