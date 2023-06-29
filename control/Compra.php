@@ -1,4 +1,5 @@
 <?php
+session_start();
 /* fluxograma?
 1 instanciar objeto
 2 "setar" informações vindas do formulário no objeto
@@ -7,29 +8,24 @@
 */
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/Compra.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/Cliente.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/CompraDAO.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/vo/ItemCompra.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ItemCompraDAO.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.php';
+
 $obj = new Compra();
 $obj->setDataCompra($_POST['dataCompra']);
 $obj->setId($_POST['id']);
 if($obj->getId() !=0){
-    ClienteDAO::getInstance()->update($obj);
+    CompraDAO::getInstance()->update($obj);
 }
     else{
     $idClienteSalvo = $_SESSION['idClienteLogado'];
-    foreach($_POST['compra'] as $id){
+    foreach($_POST['produto'] as $idProduto){
         $ClienteCompra = new Compra();
         $ClienteCompra->setIdCliente($idClienteSalvo);
+        $ClienteCompra->setIdProduto($idProduto);
         CompraDAO::getInstance()->insert($ClienteCompra);
     }
-    $idCompraSalvo = CompraDAO::getInstance()->insert($obj);
-    foreach($_POST['compra'] as $idProduto){
-        $ItemCompra = new ItemCompra();
-        $ItemCompra->setIdCompra($idCompraSalvo);
-        $ItemCompra->setIdProduto($idProduto);
-        ItemCompraDAO::getInstance()->insert($ItemCompra);
-    }
 }
-//header('location: ../recantoDoce/Compra.php');
+//header('location: ../recantoDoce/carrinho.php');
 ?>

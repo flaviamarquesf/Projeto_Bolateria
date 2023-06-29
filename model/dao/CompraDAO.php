@@ -20,9 +20,10 @@ class CompraDAO{
     }
     public function insert (Compra $compra){
         try {
-            $sql = "INSERT INTO compra (idCliente,dataCompra) VALUES (:idCliente,:dataCompra)"; 
+            $sql = "INSERT INTO compra (idProduto,idCliente,dataCompra) VALUES (:idProduto,:idCliente,:dataCompra)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
+            $p_sql->bindValue(":idProduto", $compra->getIdProduto());
             $p_sql->bindValue(":idCliente", $compra->getIdCliente());
             $p_sql->bindValue(":dataCompra", $compra->getdataCompra());
             return $p_sql->execute();
@@ -32,9 +33,10 @@ class CompraDAO{
     }
     public function update ($compra){
         try {
-            $sql = "UPDATE compra SET idCliente=:idCliente,dataCompra=:dataCompra WHERE id=:id"; 
+            $sql = "UPDATE compra SET idProduto=:idProduto,idCliente=:idCliente,dataCompra=:dataCompra WHERE id=:id"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
+            $p_sql->bindValue(":idProduto", $compra->getIdProduto());
             $p_sql->bindValue(":idCliente", $compra->getIdCliente());
             $p_sql->bindValue(":dataCompra", $compra->getDataCompra());
             $p_sql->bindValue(":id", $compra->getId());
@@ -71,6 +73,7 @@ class CompraDAO{
     private function converterLinhaDaBaseDeDadosParaObjeto($row) {
         $obj = new Compra;
         $obj->setId($row['id']);
+        $obj->setIdProduto($row['idProduto']);
         $obj->setIdCliente($row['idCliente']);
         $obj->setDataCompra($row['dataCompra']);
         return $obj;

@@ -92,11 +92,10 @@ if(isset($_GET['id'])){
                     </thead>
                     <tbody>
                         <tr class="cart-product">
-                        <form action="../control/compra.php" method="POST">
+                        <form action="../control/Compra.php" method="POST">
                         <td class="product-identification">
                         <?php $hoje = date('d/m/Y'); ?>
                                 <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
-                                <input type='hidden' value="<?php echo $hoje;?>" name = "dataCompra" id="dataCompra">
                                 <input type='hidden' value="<?php echo $obj->getLink();?>" name = "imagem_produto">
                                 <img name="link" id="link" width="70" height="40"src="<?php echo $obj->getLink();?>" alt="Miniatura" class="cart-product-image">
                         </td>
@@ -111,25 +110,38 @@ if(isset($_GET['id'])){
                             <input type='hidden' value="R$<?php echo $obj->getPreco();?>" name = "preco_produto" id="preco_produto">
                             <span class="cart-product-price">R$<?php echo $obj->getPreco();?></span>
                         </td>
-                        <?php 
+                        <fieldset>
+                                <legenda>Permissões:
+                                    <br>
+<?php 
                         require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/ItemCompraBO.php';
                         $ClienteComprou = ItemCompraBO::clienteComprouProduto($_SESSION['idClienteLogado'], $obj->getNome());
-                        $lista = ItemCompraBO::PegarPermissõesUsuario($_SESSION['idUsuarioLogado']);
+                        $lista = ItemCompraBO::PegarComprasCliente($_SESSION['idClienteLogado']);
+
                         foreach($lista as $ClienteComprou){
-                            echo "<label for= 'up".$ClienteComprou->getIdPermissao()."'>";
-                            echo $ClienteComprou->getPermissao()->getNome();
+                            echo "<label for= 'up".$ClienteComprou->getIdProduto()."'>";
+                            echo $ClienteComprou->getProduto()->getNome();
                             echo " ";
-                            echo "<input type= 'checkbox' name='permissao[]' value='".$ClienteComprou->getIdPermissao()."'id='up".$ClienteComprou->getIdPermissao()."'/>";
+                            echo "<input type= 'radio' name='produto[]' value='".$ClienteComprou->getIdProduto()."'id='up".$ClienteComprou->getIdProduto()."'required/>";
                             echo " ";
+                            echo "</label>";
+                            echo "<label for= 'up".$ClienteComprou->getIdCliente()."'>";
+                            echo $ClienteComprou->getCliente()->getNome();
+                            echo " ";
+                            echo "<input type= 'radio' name='cliente[]' value='".$ClienteComprou->getIdCliente()."'id='up".$ClienteComprou->getIdCliente()."'required/>";
+                            echo " ";
+                            echo '<input type="date" value="'.$hoje.'" name = "dataCompra" id="dataCompra"required>';
                             echo "</label>";
                          }
                         ?>
+                            </legenda>
+                        </fieldset>
+                        
                         </tr>
                     </tbody>
                 </table> 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="submit">Cancelar</button>
                     <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#carrinho<?php echo $obj->getId();?>">Adicionar<i class="fas fa-shopping-cart"></i></button>
                 </div>
                 </form>                         

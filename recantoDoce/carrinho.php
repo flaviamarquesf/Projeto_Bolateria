@@ -5,11 +5,11 @@ if(!isset($_SESSION['idClienteLogado'])){
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/CompraDAO.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ItemCompraDAO.php';
-/*$imagem=array();
+$imagem=array();
 $imagem = $_POST['imagem_produto'];
 $nome = $_POST['nome_produto'];
 $quantidade = $_POST['quantidade'];
-$valorUnitario = $_POST['preco_produto'];*/
+$valorUnitario = $_POST['preco_produto'];
 //$valorTotal = $_POST['valorTotal'];
 ?>
 <!DOCTYPE php>
@@ -64,16 +64,16 @@ $valorUnitario = $_POST['preco_produto'];*/
                                     <tbody>
                                         <tr class="cart-product">
                                             <td>
-                                                <img width="100" height="60"src="<?php echo $imagem?>" alt="item">
+                                                <img width="100" height="60"src="<?php //echo $imagem?>" alt="item">
                                             </td>
                                             <td>
-                                                <?php echo $nome; ?>
+                                                <?php //echo $nome; ?>
                                             </td>
                                             <td>
-                                                <?php echo $quantidade; ?>
+                                                <?php //echo $quantidade; ?>
                                             </td>
                                             <td>
-                                                <?php echo $valorUnitario;?>
+                                                <?php //echo $valorUnitario;?>
                                             </td>
                                         </tr>
                                     </table>

@@ -2,7 +2,17 @@
 class Compra{
     private $id;
     private $idCliente;
+    private $idProduto;
     private $dataCompra;
+    //utilizando lazyloading
+    function getCliente(){
+        require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.php';
+        return ClienteDAO::getInstance()->getById($this->idCliente);
+    }
+    function getProduto(){
+        require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
+        return ProdutoDAO::getInstance()->getById($this->idProduto);
+    }
     function getId(){
         return $this->id;
     }
@@ -10,10 +20,16 @@ class Compra{
         $this->id=$id;
     }
     function getIdCliente(){
-        return $this->idcliente;
+        return $this->idCliente;
     }
-    function setIdcliente($idcliente){
-        $this->idcliente=$idcliente;
+    function setIdCliente($idCliente){
+        $this->idCliente=$idCliente;
+    }
+    function getIdProduto(){
+        return $this->idProduto;
+    }
+    function setIdProduto($idProduto){
+        $this->idProduto=$idProduto;
     }
     function getDataCompra(){
         return $this->dataCompra;

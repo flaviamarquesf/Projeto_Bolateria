@@ -28,5 +28,5 @@ if($obj->getId() !=0){
         UsuarioPermissaoDAO::getInstance()->insert($usuarioPermissao);
     }
 }
-header('location: ../View/listarUsuario.php');
+//header('location: ../View/listarUsuario.php');
 ?>
