@@ -65,6 +65,11 @@ if(isset($_GET['id'])){
                     <hr><hr><hr>
 <?php
                         $lista = ProdutoDAO::getInstance()->listAll();
+                        require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
+                        $comprouProduto = ItemCompraBO::clienteComprouProduto($_SESSION['idClienteLogado'], $obj->getNome());
+                        if(!$comprouProduto){
+                            header("location: naoCompra.php?compra=".$obj->getNome());
+                        }
                         foreach ($lista as $obj){
                             if (ItemCompraBO::clienteComprouProduto($_SESSION['idClienteLogado'], $obj->getNome())){
                             echo '<div class="product-item-title d-flex">

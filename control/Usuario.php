@@ -14,7 +14,6 @@ $obj = new Usuario();
 $obj->setNome($_POST['nome']);
 $obj->setEmail($_POST['email']);
 $obj->setSenha(($_POST['senha']));
-print_r($_POST);
 $obj->setId($_POST['id']);
 if($obj->getId() !=0){
     UsuarioDAO::getInstance()->update($obj);

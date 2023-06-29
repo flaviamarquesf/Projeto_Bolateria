@@ -5,11 +5,11 @@ if(!isset($_SESSION['idClienteLogado'])){
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/CompraDAO.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ItemCompraDAO.php';
-$imagem=array();
+/*$imagem=array();
 $imagem = $_POST['imagem_produto'];
 $nome = $_POST['nome_produto'];
 $quantidade = $_POST['quantidade'];
-$valorUnitario = $_POST['preco_produto'];
+$valorUnitario = $_POST['preco_produto'];*/
 //$valorTotal = $_POST['valorTotal'];
 ?>
 <!DOCTYPE php>
@@ -30,8 +30,8 @@ $valorUnitario = $_POST['preco_produto'];
     <body>
         <header>
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
-                <span class="site-heading-upper text-primary mb-3">Sua lista de produtos</span>
-                <span class="site-heading-lower">não sei uma frase legal p pôr aqui</span>
+                <span class="site-heading-upper text-primary mb-3">Seu carrinho de compras</span>
+                <span class="site-heading-lower">Compre Agora!</span>
             </h1>
         </header>
         <!-- Navigation-->
@@ -50,9 +50,7 @@ $valorUnitario = $_POST['preco_produto'];
                                 <h2 class="section-heading mb-4">
                                     <span class="section-heading-upper">Seus produtos</span>
                                     <span class="section-heading-lower">Deguste sem moderação</span>
-                                </h2>
-                                <ul class="list-unstyled list-hours mb-5 text-left mx-auto">
-                                
+                                </h2>                                
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -79,11 +77,7 @@ $valorUnitario = $_POST['preco_produto'];
                                             </td>
                                         </tr>
                                     </table>
-
-                                    
-                                    
                                     <span class="ms-auto"><?php //echo $valorTotal; ?></span>
-                                </li>
                             </ul>
                             
                             </div>
