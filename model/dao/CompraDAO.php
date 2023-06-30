@@ -25,7 +25,7 @@ class CompraDAO{
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":idProduto", $compra->getIdProduto());
             $p_sql->bindValue(":idCliente", $compra->getIdCliente());
-            $p_sql->bindValue(":dataCompra", $compra->getdataCompra());
+            $p_sql->bindValue(":dataCompra", $compra->getDataCompra());
             return $p_sql->execute();
             } catch (Exception $e) {
             print "Erro ao executar a função de salvar".$e->getMessage();

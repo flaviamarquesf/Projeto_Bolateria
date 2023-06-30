@@ -13,6 +13,7 @@ if(isset($_GET['id'])){
     //na variável $objUsuario
    $objCliente=ClienteDAO::getInstance()->getById($_SESSION['idClienteLogado']);
 }
+date_default_timezone_set('America/Sao_Paulo');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,14 +88,14 @@ if(isset($_GET['id'])){
                         <th>Nome</th>
                         <th>Quant</th>
                         <th>Preço</th>
-                        <th>Data</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="cart-product">
                         <form action="../control/Compra.php" method="POST">
                         <td class="product-identification">
-                        <?php $hoje = date('d/m/Y'); ?>
+                        <?php $hoje = date('d/m/Y H:i'); ?>
+                                <input type="hidden" name="dataCompra" value="<?php echo $hoje;?>">
                                 <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                 <input type='hidden' value="<?php echo $obj->getLink();?>" name = "imagem_produto">
                                 <img name="link" id="link" width="70" height="40"src="<?php echo $obj->getLink();?>" alt="Miniatura" class="cart-product-image">
@@ -104,38 +105,29 @@ if(isset($_GET['id'])){
                             <strong class="cart-product-title"><?php echo $obj->getNome();?></strong>
                         </td>
                         <td>
-                            <input style="width: 50px;" name="quantidade" id="quantidade" type="number" value="0" min="0" class="product-qtd-input">
+                            <input style="width: 50px;" name="quantidade" id="quantidade" type="number" value="1" min="0" class="product-qtd-input">
                         </td>
                         <td>
                             <input type='hidden' value="R$<?php echo $obj->getPreco();?>" name = "preco_produto" id="preco_produto">
                             <span class="cart-product-price">R$<?php echo $obj->getPreco();?></span>
                         </td>
-                        <td>
-                            
-                        </td>
                         <fieldset>
                                 <legenda>
                                     <br>
 <?php 
-                        require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/ItemCompraBO.php';
-                        $ClienteComprou = ItemCompraBO::clienteComprouProduto($_SESSION['idClienteLogado'], $obj->getNome());
-                        $lista = ItemCompraBO::PegarComprasCliente($_SESSION['idClienteLogado']);
                         // FALTA VERIFICAR SE JÁ ESTÁ NO CARRINHO
-                            foreach($lista as $ClienteComprou){
-                            echo "<label for= 'up".$ClienteComprou->getIdProduto()."'>";
+                            echo "<label for= 'up".$obj->getId()."'>";
                             //echo $ClienteComprou->getProduto()->getNome();
                             echo " ";
-                            echo "<input type= 'hidden' name='produto[]' value='".$ClienteComprou->getIdProduto()."'id='up".$ClienteComprou->getIdProduto()."'required/>";
+                            echo "<input type= 'hidden' name='produto[]' value='".$obj->getId()."'id='up".$obj->getId()."'required/>";
                             echo " ";
                             echo "</label>";
-                            echo "<label for= 'up".$ClienteComprou->getIdCliente()."'>";
+                            echo "<label for= 'up".$_SESSION['idClienteLogado']."'>";
                             //echo $ClienteComprou->getCliente()->getNome();
                             echo " ";
-                            echo "<input type= 'hidden' name='cliente[]' value='".$ClienteComprou->getIdCliente()."'id='up".$ClienteComprou->getIdCliente()."'required/>";
+                            echo "<input type= 'hidden' name='cliente[]' value='".$_SESSION['idClienteLogado']."'id='up".$_SESSION['idClienteLogado']."'required/>";
                             echo " ";
-                            echo "</label>";
-                        }
-                        
+                            echo "</label>";            
                         ?>
                             </legenda>
                         </fieldset>
