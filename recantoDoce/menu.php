@@ -10,7 +10,7 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.php">Inicio</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="produtos.php">Produtos</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="loja.php">Loja</a></li>
-                        <!--<li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="carrinho.php">Carrinho<i class="fas fa-shopping-cart"></i></a></li>-->
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="carrinho.php">Carrinho<i class="fas fa-shopping-cart"></i></a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" data-toggle="modal" data-target="#logoutModal" href="sair.php">Sair</a></li>
                         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">

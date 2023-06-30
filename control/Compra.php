@@ -13,7 +13,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/CompraDAO.p
 require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.php';
 
 $obj = new Compra();
-$obj->setDataCompra($_POST['dataCompra']);
+echo $obj->setDataCompra($_POST['dataCompra']);
+
 $obj->setId($_POST['id']);
 if($obj->getId() !=0){
     CompraDAO::getInstance()->update($obj);

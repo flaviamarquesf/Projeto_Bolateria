@@ -56,7 +56,7 @@ if(isset($_GET['id'])){
                             </h2>
                         </div>
                     </div>
-                    <hr><hr><hr>
+                    <br><br><br>
                     <?php
                         require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ProdutoDAO.php';
                         $lista = ProdutoDAO::getInstance()->listAll();
@@ -77,8 +77,7 @@ if(isset($_GET['id'])){
                                 <i class="fas fa-shopping-cart"></i>
                             </button></p></div></div>';
                             echo '<div class="product-item-description d-flex me-auto"></div>';  
-                            echo '<hr>';
-                            ?>
+                            ?> <br>
     <div class="product-item-description d-flex ms-auto"><div class="bg-faded p-5 rounded">
     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -88,6 +87,7 @@ if(isset($_GET['id'])){
                         <th>Nome</th>
                         <th>Quant</th>
                         <th>Preço</th>
+                        <th>Data</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,29 +110,32 @@ if(isset($_GET['id'])){
                             <input type='hidden' value="R$<?php echo $obj->getPreco();?>" name = "preco_produto" id="preco_produto">
                             <span class="cart-product-price">R$<?php echo $obj->getPreco();?></span>
                         </td>
+                        <td>
+                            
+                        </td>
                         <fieldset>
-                                <legenda>Permissões:
+                                <legenda>
                                     <br>
 <?php 
                         require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/bo/ItemCompraBO.php';
                         $ClienteComprou = ItemCompraBO::clienteComprouProduto($_SESSION['idClienteLogado'], $obj->getNome());
                         $lista = ItemCompraBO::PegarComprasCliente($_SESSION['idClienteLogado']);
-
-                        foreach($lista as $ClienteComprou){
+                        // FALTA VERIFICAR SE JÁ ESTÁ NO CARRINHO
+                            foreach($lista as $ClienteComprou){
                             echo "<label for= 'up".$ClienteComprou->getIdProduto()."'>";
-                            echo $ClienteComprou->getProduto()->getNome();
+                            //echo $ClienteComprou->getProduto()->getNome();
                             echo " ";
-                            echo "<input type= 'radio' name='produto[]' value='".$ClienteComprou->getIdProduto()."'id='up".$ClienteComprou->getIdProduto()."'required/>";
+                            echo "<input type= 'hidden' name='produto[]' value='".$ClienteComprou->getIdProduto()."'id='up".$ClienteComprou->getIdProduto()."'required/>";
                             echo " ";
                             echo "</label>";
                             echo "<label for= 'up".$ClienteComprou->getIdCliente()."'>";
-                            echo $ClienteComprou->getCliente()->getNome();
+                            //echo $ClienteComprou->getCliente()->getNome();
                             echo " ";
-                            echo "<input type= 'radio' name='cliente[]' value='".$ClienteComprou->getIdCliente()."'id='up".$ClienteComprou->getIdCliente()."'required/>";
+                            echo "<input type= 'hidden' name='cliente[]' value='".$ClienteComprou->getIdCliente()."'id='up".$ClienteComprou->getIdCliente()."'required/>";
                             echo " ";
-                            echo '<input type="date" value="'.$hoje.'" name = "dataCompra" id="dataCompra"required>';
                             echo "</label>";
-                         }
+                        }
+                        
                         ?>
                             </legenda>
                         </fieldset>
