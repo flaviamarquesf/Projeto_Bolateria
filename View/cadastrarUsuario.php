@@ -134,9 +134,11 @@ if(isset($_GET['id'])){
                                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="enviar" id="enviar" value="Enviar">
                                                     </form>
                                                     <hr>
+                                                    <!--
                                                     <div class="text-center">
                                                         <a class="small" href="login.php">Already have an account? Login!</a>
                                                     </div>
+                                                                -->
                                                 </div>
                                             </div>
                                         </div>

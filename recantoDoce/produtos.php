@@ -94,8 +94,6 @@ date_default_timezone_set('America/Sao_Paulo');
                         <tr class="cart-product">
                         <form action="../control/Compra.php" method="POST">
                         <td class="product-identification">
-                        <?php $hoje = date('d/m/Y H:i'); ?>
-                                <input type="hidden" name="dataCompra" value="<?php echo $hoje;?>">
                                 <input type='hidden' value="<?php echo isset($_GET['id'])?$_GET['id']:"0"?>" name = "id">
                                 <input type='hidden' value="<?php echo $obj->getLink();?>" name = "imagem_produto">
                                 <img name="link" id="link" width="70" height="40"src="<?php echo $obj->getLink();?>" alt="Miniatura" class="cart-product-image">
@@ -105,7 +103,7 @@ date_default_timezone_set('America/Sao_Paulo');
                             <strong class="cart-product-title"><?php echo $obj->getNome();?></strong>
                         </td>
                         <td>
-                            <input style="width: 50px;" name="quantidade" id="quantidade" type="number" value="1" min="0" class="product-qtd-input">
+                            <input style="width: 50px;" name="quantidade" type="number" value="1" min="1" max="10" class="product-qtd-input">
                         </td>
                         <td>
                             <input type='hidden' value="R$<?php echo $obj->getPreco();?>" name = "preco_produto" id="preco_produto">
