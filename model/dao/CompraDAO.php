@@ -20,11 +20,12 @@ class CompraDAO{
     }
     public function insert (Compra $compra){
         try {
-            $sql = "INSERT INTO compra (idProduto,idCliente,dataCompra) VALUES (:idProduto,:idCliente,:dataCompra)"; 
+            $sql = "INSERT INTO compra (idProduto,quantidade,idCliente,dataCompra) VALUES (:idProduto,:quantidade,:idCliente,:dataCompra)"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":idProduto", $compra->getIdProduto());
             $p_sql->bindValue(":idCliente", $compra->getIdCliente());
+            $p_sql->bindValue(":quantidade", $compra->getQuantidade());
             $p_sql->bindValue(":dataCompra", $compra->getDataCompra());
             return $p_sql->execute();
             } catch (Exception $e) {
@@ -33,11 +34,12 @@ class CompraDAO{
     }
     public function update ($compra){
         try {
-            $sql = "UPDATE compra SET idProduto=:idProduto,idCliente=:idCliente,dataCompra=:dataCompra WHERE id=:id"; 
+            $sql = "UPDATE compra SET idProduto=:idProduto,quantidade=:quantidade,idCliente=:idCliente,dataCompra=:dataCompra WHERE id=:id"; 
             //perceba que na linha abaixo vai precisar de um import
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":idProduto", $compra->getIdProduto());
             $p_sql->bindValue(":idCliente", $compra->getIdCliente());
+            $p_sql->bindValue(":quantidade", $compra->getQuantidade());
             $p_sql->bindValue(":dataCompra", $compra->getDataCompra());
             $p_sql->bindValue(":id", $compra->getId());
             return $p_sql->execute();
@@ -74,6 +76,7 @@ class CompraDAO{
         $obj = new Compra;
         $obj->setId($row['id']);
         $obj->setIdProduto($row['idProduto']);
+        $obj->setQuantidade($row['quantidade']);
         $obj->setIdCliente($row['idCliente']);
         $obj->setDataCompra($row['dataCompra']);
         return $obj;

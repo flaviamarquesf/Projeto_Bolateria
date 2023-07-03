@@ -3,6 +3,7 @@ class Compra{
     private $id;
     private $idCliente;
     private $idProduto;
+    private $quantidade;
     private $dataCompra;
     //utilizando lazyloading
     function getCliente(){
@@ -24,6 +25,12 @@ class Compra{
     }
     function setIdCliente($idCliente){
         $this->idCliente=$idCliente;
+    }
+    function getQuantidade(){
+        return $this->quantidade;
+    }
+    function setQuantidade($quantidade){
+        $this->quantidade=$quantidade;
     }
     function getIdProduto(){
         return $this->idProduto;

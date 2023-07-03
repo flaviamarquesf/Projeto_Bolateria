@@ -14,11 +14,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.
 
 $obj = new Compra();
 $obj->setId($_POST['id']);
-echo '<form action="../recantoDoce/carrinho.php" method="POST">
-        <input type="number" name="quantidade" value="'.$_POST['quantidade'].'">
-        <input type="submit" >
-      </form>';
-    
 if($obj->getId() !=0){
     CompraDAO::getInstance()->update($obj);
 }
@@ -27,9 +22,10 @@ if($obj->getId() !=0){
     foreach($_POST['produto'] as $idProduto){
         $ClienteCompra = new Compra();
         $ClienteCompra->setIdCliente($idClienteSalvo);
+        $ClienteCompra->setQuantidade($_POST['quantidade']);
         $ClienteCompra->setIdProduto($idProduto);
         CompraDAO::getInstance()->insert($ClienteCompra);
     }
 }
-//header('location: ../recantoDoce/carrinho.php');
+header('location: ../recantoDoce/carrinho.php');
 ?>

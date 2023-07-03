@@ -4,16 +4,6 @@ if(!isset($_SESSION['idClienteLogado'])){
     header("Location: login.php");
 }
 //$valorTotal = $_POST['valorTotal'];
-$objCliente=NULL;
-if(isset($_GET['id'])){
-       //buscar da base o cara com o id do get
-       //e salvar na variavel $objUsuario;
-       //Para usar o DAO eu preciso importar ele
-    require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/ClienteDAO.php';
-    //usar o meu getByid da classe usuario dao e armazenar o restorno
-    //na variável $objUsuario
-   $objCliente=ClienteDAO::getInstance()->getById($_SESSION['idClienteLogado']);
-}
 date_default_timezone_set('America/Sao_Paulo');
 ?>
 <!DOCTYPE php>
@@ -77,14 +67,9 @@ date_default_timezone_set('America/Sao_Paulo');
                             echo '<img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="'
                             .$obj->getLink(). '"alt="..." />';
                             echo '<div class="product-item-description d-flex me-auto"><div class="bg-faded p-5 rounded"><p class="mb-0">Preço: R$'
-                            .$obj->getPreco();
-                            
-                            if($_POST['quantidade']==NULL){
-                                echo '-- Quantidade: 0</p></div></div>';
-                            } else{
-                                 echo '-- Quantidade: '.$_POST['quantidade'].'</p></div></div>';
+                            .$obj->getPreco().'</p></div></div>';
                             }
-                            }
+                            // falta a quantidade aqui
                              }
                         ?>
                             </legenda>
