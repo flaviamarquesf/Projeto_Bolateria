@@ -49,6 +49,7 @@ if(isset($_GET['id'])){
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
 
 </head>
 

@@ -17,7 +17,7 @@ if(!isset($_SESSION['idUsuarioLogado'])){
 
     <link rel="shortcut icon" href="img/fundo.png">
     <title>RD Admin</title>
-
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
