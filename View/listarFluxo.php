@@ -75,12 +75,15 @@ if(!$possuiPermissao){
                         <div class="card-body">
                         <form action='listarFLuxo.php' METHOD='GET'>
                             <label for="dataInicial">Inicial: </label>
-                                <input type='date' id='dataInicial' name='dataInicial'/>
+                                <input type='date' id='dataInicial' name='dataInicial'required/>
                             <label for="dataFinal">Final: </label>
-                                <input type='date'  id='dataFinal' name='dataFinal'/>
-                                
+                                <input type='date'  id='dataFinal' name='dataFinal'required/>
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
                         </form>
-                         <!-- Grafico de barras -->
+                        <br>
+                         <!-- Grafico de barras 
                          <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Margem de lucro</h6>
@@ -91,7 +94,7 @@ if(!$possuiPermissao){
                                     </div>
                                 </div>
                             </div>
-
+-->
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -117,15 +120,12 @@ if(!$possuiPermissao){
                                     <tbody>
                                         <?php
                                             require_once $_SERVER['DOCUMENT_ROOT'].'/aulaphp/bolateria/model/dao/FluxoFinanceiroDAO.php';
-                                            $sql=NULL;
-                                            $arrayDeParam=array();;
-                                            $arrayDeVal=array();;
                                             if(isset($_GET['dataInicial'])  && isset($_GET['dataFinal'])){
-                                                $sql = " SELECT * FROM dataPagamento>= :dataInicial and dataPagamento<= :dataFinal";
-                                                $arrayDeParam = array(":dataInicial", ":dataFinal");
-                                                $arrayDeVal = array($_GET["dataInicial"], $_GET["dataFinal"]);
+                                                $sql = "SELECT * FROM dataPagamento>= :dataInicial and dataPagamento<= :dataFinal";
+                                                $arrayDeParametros = array(":dataInicial", ":dataFinal");
+                                                $arrayDeValores = array($_GET["dataInicial"], $_GET["dataFinal"]);
+                                                $lista = FluxoFinanceiroDAO::getInstance()->listWhere($sql,$arrayDeParametros,$arrayDeValores);
                                             }
-                                            $lista = FluxoFinanceiroDAO::getInstance()->listWhere($sql,$arrayDeParam,$arrayDeVal);
                                             $lista = FluxoFinanceiroDAO::getInstance()->listAll();
                                             $total=0;
                                             foreach ($lista as $obj){
