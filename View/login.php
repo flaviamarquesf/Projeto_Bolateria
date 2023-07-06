@@ -40,7 +40,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Seje bem-vinde!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Seja bem-vindo(a)!</h1>
                                     </div>
                                     <form class="user" method="post" action="../control/checarLogin.php">
                                         <?php
